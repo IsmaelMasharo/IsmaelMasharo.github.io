@@ -12,6 +12,7 @@ export default {
       open: true,
       path: "/default/",
       pages: [
+        {name: "Landing", path: "/default/landing"},
         {name: "Dashboard", path: "/default/example-dashboard"},
         {name: "Report", path: "/default/example-report"},
         {name: "Weather", path: "/default/weather"}
