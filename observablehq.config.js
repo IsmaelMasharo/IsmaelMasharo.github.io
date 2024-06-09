@@ -8,6 +8,14 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
+      name: "Stories",
+      open: true,
+      // path: "/stories/",
+      pages: [
+        {name: "US College Majors", path: "/stories/college_majors"},
+      ]
+    },
+    {
       name: "Default Examples",
       open: true,
       path: "/default/",
