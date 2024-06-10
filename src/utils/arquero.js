@@ -8,3 +8,4 @@ aq.addTableMethod("view", tbView, { override: true })
 aq.addTableMethod("shape", tbShape, { override: true })
 
 export default aq
+export const renameLower = (table) => aq.names(table.columnNames().map((col) => col.toLowerCase()))
