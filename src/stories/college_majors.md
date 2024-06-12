@@ -1,34 +1,78 @@
 ---
-theme: dark
 title: US College Majors
 toc: false
 ---
 
-# US College Majors
+```html
+<h1>Popular majors were not near the highest paid ones</h1>
+<p>
+  Despite having the highest number of graduates,
+  <span class="psychology">Psychology</span> earns 3.5 times less than
+  <span class="petroleum">Petroleum Engineering</span>, the highest paid career.
+</p>
+<p>
+  Bellow, each line corresponds to a major, conecting the number of graduates
+  and median salaries.
+</p>
+```
 
-The data shown in this page comes from the American Community Survey 2010-2012.
-It contains details mainly about college majors, graduates and salaries.
+```html
+<!-- <div">
+  <span class="petroleum">Petroleum Engineering</span>
+  <span class="psychology">Psychology</span>
+</div> -->
+<style>
+  .petroleum {
+    font-weight: bold;
+    border-bottom: solid 2px ${colorScale.apply('Petroleum Engineering')}
+  }
+  .psychology {
+    font-weight: bold;
+    border-bottom: solid 2px ${colorScale.apply('Psychology')}
+  }
+</style>
+```
 
-Some basic questions arised when starting to look at the data. Like, which where the majors with most/least graduates? per major category?
+```js
+const colorScale = plot.scale("color")
+```
 
 ```js
 plot
 ```
 
 ```js
+// MEDIAN SALARIES OF MAJORS OF INTEREST
+// top2
+//   .select(["major", "dimension", "value"])
+//   .filter((d) => d.dimension == "Median Salary")
+//   .view()
+```
+
+```js
 const plot = Plot.plot({
-  width,
+  // width,
+  // subtitle: 'Each line corresponds to a major, conecting number of graduates and median salary.',
+  caption:
+    "Source: American Community Survey 2010-2012 Public Use Microdata Series",
+  insetRight: 10,
   height: 250,
-  marginLeft: 72,
+  marginLeft: 5,
   marginRight: 20,
   x: { axis: null },
-  y: {
-    padding: 0,
-    label: null,
-    tickPadding: 9,
-    tickSize: 0,
-  },
+  y: { padding: 0 },
   marks: [
+    Plot.axisY({
+      label: null,
+      tickPadding: 9,
+      tickSize: 0,
+      fontWeight: "600",
+      tickSize: 0,
+      textAnchor: "start",
+      tickFormat: (x) => `${x} →`,
+      dx: 6,
+      dy: -12,
+    }),
     Plot.ruleY(cols, { strokeWidth: 0.1 }),
     Plot.line(dtFold, {
       x: (d) => scls.get(d.dimension)(d.value),
@@ -36,7 +80,6 @@ const plot = Plot.plot({
       z: "major",
       strokeWidth: 0.5,
       strokeOpacity: 0.1,
-      tip: true,
     }),
     Plot.line(top2, {
       x: (d) => scls.get(d.dimension)(d.value),
@@ -95,13 +138,13 @@ const dt = aq
 
 ```js
 const dtFold = dt
-  .select(["major_category", "major", ...cols])
+  .select(["major", ...cols])
   .fold(cols, { as: ["dimension", "value"] })
 ```
 
 ```js
 const top2 = dt
-  .select(["major_category", "major", ...cols])
+  .select(["major", ...cols])
   .orderby(aq.desc("Graduates"))
   .derive({
     rankGrads: op.dense_rank(),
@@ -118,7 +161,6 @@ const top2 = dt
   })
   .filter((d) => d.rankMedSal === 1 || d.rankGrads === 1)
   .fold(cols, { as: ["dimension", "value"] })
-  .objects()
 ```
 
 ```js
