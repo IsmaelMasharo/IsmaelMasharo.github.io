@@ -15,17 +15,6 @@ export default {
         {name: "US College Majors", path: "/stories/college_majors"},
       ]
     },
-    // {
-    //   name: "Default Examples",
-    //   open: true,
-    //   path: "/default/",
-    //   pages: [
-    //     {name: "Landing", path: "/default/landing"},
-    //     {name: "Dashboard", path: "/default/example-dashboard"},
-    //     {name: "Report", path: "/default/example-report"},
-    //     {name: "Weather", path: "/default/weather"}
-    //   ]
-    // }
   ],
 
   // Content to add to the head of the page, e.g. for a favicon:
@@ -41,7 +30,7 @@ export default {
   // sidebar: true, // whether to show the sidebar
   // toc: true, // whether to show the table of contents
   pager: false, // whether to show previous & next links in the footer
-  // output: "dist", // path to the output root for build
+  output: "docs", // path to the output root for build
   // search: true, // activate search
   // linkify: true, // convert URLs in Markdown to links
   // typographer: false, // smart quotes and other typographic improvements

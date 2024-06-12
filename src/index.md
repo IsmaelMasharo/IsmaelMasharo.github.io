@@ -4,6 +4,7 @@ toc: false
 
 ```js
 import { longList } from "/components/tools.js"
+import { csvParse, utcParse } from "npm:d3"
 ```
 
 <style>
@@ -345,7 +346,7 @@ const jobExp = [
 <!-- TOOLS  -->
 
 ```js
-const tools = d3.csvParse(
+const tools = csvParse(
   `category,tool,order
 Data,PowerBI,1
 Developer,React,2
@@ -389,7 +390,7 @@ Analytics,Machine Learning,5
 <!-- VISUALIZATIONS  -->
 
 ```js
-const dateParser = d3.utcParse("%b %Y")
+const dateParser = utcParse("%b %Y")
 const jobExpD = jobExp.map((d) => ({
   ...d,
   start: dateParser(d.start),
