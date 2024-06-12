@@ -4,16 +4,32 @@ toc: false
 ---
 
 ```html
-<h1>Popular majors were not near the highest paid ones</h1>
-<p>
-  Despite having the highest number of graduates,
-  <span class="psychology">Psychology</span> earns 3.5 times less than
-  <span class="petroleum">Petroleum Engineering</span>, the highest paid career.
-</p>
-<p>
-  Bellow, each line corresponds to a major, conecting the number of graduates
-  and median salaries.
-</p>
+<!-- <main style="display: flex; justify-content: center"> -->
+<article>
+  <h1 style="font-size: 2em">US College Majors</h1>
+  <p>
+    The analysis is part of the TidyTuesday series. Details about the data
+    <a
+      href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16"
+      >here</a
+    >.
+  </p>
+  <hr />
+  <h2 style="margin-bottom: .2em">
+    Popular majors were not near the highest paid ones
+  </h2>
+  <p>
+    Despite having the highest number of graduates,
+    <span class="psychology">Psychology</span> reported earnings 3.5 times less
+    than <span class="petroleum">Petroleum Engineering</span>, the highest paid
+    career.
+  </p>
+  <p>
+    Bellow, each line corresponds to a major, conecting the number of graduates
+    and median salaries.
+  </p>
+  ${plot}
+</article>
 ```
 
 ```html
@@ -38,10 +54,6 @@ const colorScale = plot.scale("color")
 ```
 
 ```js
-plot
-```
-
-```js
 // MEDIAN SALARIES OF MAJORS OF INTEREST
 // top2
 //   .select(["major", "dimension", "value"])
@@ -51,7 +63,6 @@ plot
 
 ```js
 const plot = Plot.plot({
-  // width,
   // subtitle: 'Each line corresponds to a major, conecting number of graduates and median salary.',
   caption:
     "Source: American Community Survey 2010-2012 Public Use Microdata Series",
