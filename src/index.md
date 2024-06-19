@@ -61,7 +61,7 @@ import { csvParse, utcParse } from "npm:d3"
 
 ```html
 <div class="hero">
-  <h1>Hi, I'm Ismael<br>Data Explorer</h1>
+  <h1>I'm Ismael<br>Data Explorer</h1>
   <h2>
     I think about
     <span style="border-bottom: solid 2px #4269d0;">data</span> and use
@@ -363,8 +363,8 @@ Data,Streamlit,1
 Design,Storytelling,4
 Data,DBT,1
 Analytics,Data Science,5
-Data,A/B Testing,1
 Developer,GIT,2
+Analytics,A/B Testing,1
 Data,SQL,1
 Design,UX,3
 Analytics,Research,5
@@ -376,13 +376,13 @@ Data,Dyplr,1
 Data,Vega-Lite,1
 Developer,Tailwind,2
 Data,Observable Plot,1
+Analytics,Machine Learning,5
 Design,SCRUM,3
 Data,ggplot,1
 Developer,HTML,2
 Data,seaborn,1
 Data,scypy,1
 Developer,CSS,1
-Analytics,Machine Learning,5
 `
 )
 ```
