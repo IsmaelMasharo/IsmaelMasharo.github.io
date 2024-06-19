@@ -13,6 +13,7 @@ export default {
       // path: "/stories/",
       pages: [
         {name: "US College Majors", path: "/stories/college_majors"},
+        {name: "My Spotify History", path: "/stories/spotify_history"},
       ]
     },
   ],
