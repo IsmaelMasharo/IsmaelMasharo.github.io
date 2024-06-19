@@ -8,7 +8,7 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Stories",
+      name: "Posts",
       open: true,
       // path: "/stories/",
       pages: [

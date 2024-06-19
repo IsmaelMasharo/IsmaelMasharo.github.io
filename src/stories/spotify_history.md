@@ -8,6 +8,7 @@ theme: dashboard
 import aq, { op, renameLower } from "../utils/arquero.js"
 import { TopLevel } from "../components/topLevelPlot.js";
 import { Trend } from "../components/trend.js";
+import { utcFormat } from "npm:d3"
 ```
 
 ```js
@@ -111,7 +112,7 @@ const trends = gpdt
 ```
 
 ```js
-const tmFormat = d3.utcFormat("%B %d, %Y")
+const tmFormat = utcFormat("%B %d, %Y")
 const lnplot = (width) =>
   Plot.plot({
     width,

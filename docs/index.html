@@ -70,10 +70,10 @@ const [{longList}, {csvParse, utcParse}] = await Promise.all([import("./_import/
 return {longList,csvParse,utcParse};
 }});
 
-define({id: "cab01f66", inputs: ["html","display"], body: async (html,display) => {
+define({id: "3f3f3bd2", inputs: ["html","display"], body: async (html,display) => {
 display(await(
 html.fragment`<div class="hero">
-  <h1>Hi, I'm Ismael<br>Data Explorer</h1>
+  <h1>I'm Ismael<br>Data Explorer</h1>
   <h2>
     I think about
     <span style="border-bottom: solid 2px #4269d0;">data</span> and use
@@ -349,7 +349,7 @@ const jobExp = [
 return {jobExp};
 }});
 
-define({id: "968bbed2", inputs: ["csvParse"], outputs: ["tools"], body: (csvParse) => {
+define({id: "5316c285", inputs: ["csvParse"], outputs: ["tools"], body: (csvParse) => {
 const tools = csvParse(
   `category,tool,order
 Data,PowerBI,1
@@ -367,8 +367,8 @@ Data,Streamlit,1
 Design,Storytelling,4
 Data,DBT,1
 Analytics,Data Science,5
-Data,A/B Testing,1
 Developer,GIT,2
+Analytics,A/B Testing,1
 Data,SQL,1
 Design,UX,3
 Analytics,Research,5
@@ -380,13 +380,13 @@ Data,Dyplr,1
 Data,Vega-Lite,1
 Developer,Tailwind,2
 Data,Observable Plot,1
+Analytics,Machine Learning,5
 Design,SCRUM,3
 Data,ggplot,1
 Developer,HTML,2
 Data,seaborn,1
 Data,scypy,1
 Developer,CSS,1
-Analytics,Machine Learning,5
 `
 )
 return {tools};
@@ -453,16 +453,17 @@ return {dateParser,jobExpD,jobsPlot};
     <li class="observablehq-link observablehq-link-active"><a href="./">Ismael Vargas</a></li>
   </ol>
   <details open>
-    <summary>Stories</summary>
+    <summary>Posts</summary>
     <ol>
     <li class="observablehq-link"><a href="./stories/college_majors">US College Majors</a></li>
+    <li class="observablehq-link"><a href="./stories/spotify_history">My Spotify History</a></li>
     </ol>
   </details>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div id="cell-8fa9dd62" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:8fa9dd62:--></div>
 <style>
 
 .hero {
@@ -514,8 +515,8 @@ return {dateParser,jobExpD,jobsPlot};
 }
 
 </style>
-<div id="cell-cab01f66" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
-<div id="cell-db1ea687" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:3f3f3bd2:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:db1ea687:--></div>
 <hr>
 <div style="font-family: sans-serif; margin-top: 4rem;">
   <p>
@@ -524,18 +525,18 @@ return {dateParser,jobExpD,jobsPlot};
   </p>
   <br>
 </div>
-<div id="cell-3a735f70" class="observablehq observablehq--block"><span class="observablehq-loading"></span></div>
-<div id="cell-6fdc9a93" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:3a735f70:--></div>
+<div class="observablehq observablehq--block"><!--:6fdc9a93:--></div>
 <!-- PREVIOUS POSTS METADATA -->
-<div id="cell-f99361ce" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:f99361ce:--></div>
 <!-- JOBS METADATA -->
-<div id="cell-b23b9b2f" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:b23b9b2f:--></div>
 <!-- TOOLS  -->
-<div id="cell-968bbed2" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:5316c285:--></div>
 <!-- VISUALIZATIONS  -->
-<div id="cell-2e0196d5" class="observablehq observablehq--block"></div>
+<div class="observablehq observablehq--block"><!--:2e0196d5:--></div>
 </main>
 <footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-06-12T17:41:28">Jun 12, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
 </footer>
 </div>

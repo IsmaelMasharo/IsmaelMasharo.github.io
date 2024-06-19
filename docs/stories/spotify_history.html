@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>My Spotify History | Ismael Vargas</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight,alt,wide.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight,alt,wide.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="../_observablehq/client.js">
+<link rel="modulepreload" href="../_observablehq/runtime.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.js">
+<link rel="modulepreload" href="../_import/utils/arquero.db8408e4.js">
+<link rel="modulepreload" href="../_import/components/topLevelPlot.96e170f0.js">
+<link rel="modulepreload" href="../_import/components/trend.d1515ee2.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="../_npm/arquero@5.4.0/_esm.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="../_npm/apache-arrow@16.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/parquet-wasm@0.6.1/_esm.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/acorn@8.12.0/_esm.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/_esm.js">
+<link rel="modulepreload" href="../_npm/tslib@2.6.3/_esm.js">
+<link rel="modulepreload" href="../_npm/flatbuffers@24.3.25/_esm.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/_esm.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="icon" href="../_file/assets/ismael-favicon.0c0e520b.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.js";
+import {registerFile} from "../_observablehq/stdlib.js";
+
+registerFile("../data/spotify-2023.parquet", {"name":"../data/spotify-2023.parquet","path":"../_file/data/spotify-2023.fb1f3f43.parquet","lastModified":1718836063874});
+
+define({id: "db026b08", outputs: ["aq","op","renameLower","TopLevel","Trend","utcFormat"], body: async () => {
+const [{default: aq, op, renameLower}, {TopLevel}, {Trend}, {utcFormat}] = await Promise.all([import("../_import/utils/arquero.db8408e4.js"), import("../_import/components/topLevelPlot.96e170f0.js"), import("../_import/components/trend.d1515ee2.js"), import("../_npm/d3@7.9.0/_esm.js")]);
+
+return {aq,op,renameLower,TopLevel,Trend,utcFormat};
+}});
+
+define({id: "28151d1a", inputs: ["FileAttachment"], outputs: ["data"], body: (FileAttachment) => {
+const data = FileAttachment("../data/spotify-2023.parquet").parquet()
+return {data};
+}});
+
+define({id: "6b2860f9", inputs: ["aq","data","op"], outputs: ["dt"], body: (aq,data,op) => {
+const dt = aq
+  .fromArrow(data)
+  .derive({ stop_dttm: (d) => op.parse_date(d.stop_dttm) })
+  .rename({ stop_dttm: "date" })
+return {dt};
+}});
+
+define({id: "9bb07466", inputs: ["op","dt"], outputs: ["dttm","gpdt"], body: (op,dt) => {
+const dttm = (d) =>
+  op.datetime(op.year(d.date), op.month(d.date), d.date(d.date))
+
+const gpdt = dt.groupby({ date: dttm })
+  .rollup({
+    dsongs: (d) => op.distinct(d.song),
+    dartists: (d) => op.distinct(d.artist),
+    dalbums: (d) => op.distinct(d.album),
+  })
+return {dttm,gpdt};
+}});
+
+define({id: "475d3f5f", inputs: ["aq","dt","op"], outputs: ["songs","artists","albums"], body: (aq,dt,op) => {
+const songs = aq.agg(dt, (d) => op.distinct(d.song))
+const artists = aq.agg(dt, (d) => op.distinct(d.artist))
+const albums = aq.agg(dt, (d) => op.distinct(d.album))
+return {songs,artists,albums};
+}});
+
+define({id: "37c5f760", inputs: ["gpdt","aq","op"], outputs: ["trends"], body: (gpdt,aq,op) => {
+const trends = gpdt
+  .orderby(aq.desc("date"))
+  .slice(0, 7)
+  .filter(d => d.date == op.max(d.date) || d.date == op.min(d.date))
+  .derive({
+    tsong: d => (op.first_value(d.dsongs) - op.last_value(d.dsongs)) / op.last_value(d.dsongs),
+    tartist: d => (op.first_value(d.dartists) - op.last_value(d.dartists)) / op.last_value(d.dartists),
+    talbum: d => (op.first_value(d.dalbums) - op.last_value(d.dalbums)) / op.last_value(d.dalbums),
+  })
+  .select(aq.not(aq.startswith("d")))
+  .dedupe()
+  .object()
+return {trends};
+}});
+
+define({id: "0362964f", inputs: ["html","songs","Trend","trends","artists","albums","display"], body: async (html,songs,Trend,trends,artists,albums,display) => {
+display(await(
+html.fragment`<h1 style="font-family: sans-serif; display: flex; align-items: center">
+  <svg xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px; margin-right: 10px;" viewBox="0 0 496 512">
+    <path fill="var(--theme-spotify)" d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8Z"/>
+    <path d="M406.6 231.1c-5.2 0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2 0-23.3-10.3-23.3-23.6 0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6 0 13.6-11 23.3-23.2 23.3zm-31 76.2c-5.2 0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7 0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9 0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm-26.9 65.6c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4z"/>
+</svg>
+  <span>My Spotify History</span> 
+</h1>
+<div class="grid grid-cols-3">
+  <div class="card">
+    <h2>Songs</h2>
+    <span class="big">${songs}</span>
+    ${Trend(trends.tsong, {format: {style: "percent"}})}
+    <span class="muted">over 7d</span>
+  </div>
+  <div class="card">
+    <h2>Artists</h2>
+    <span class="big">${artists}</span>
+    ${Trend(trends.tartist, {format: {style: "percent"}})}
+    <span class="muted">over 7d</span>
+  </div>
+  <div class="card">
+    <h2>Albums</h2>
+    <span class="big">${albums}</span>
+    ${Trend(trends.talbum, {format: {style: "percent"}})}
+    <span class="muted">over 7d</span>
+  </div>
+  <!-- <div class="card">
+    <h2>Songs</h2>
+    <span class="big">${songs}</span>
+    ${Trend(trends.tsong, {format: {style: "percent"}})}
+    <span class="muted">over 7d</span>
+  </div> -->
+</div>`
+))
+}});
+
+define({id: "f298cd72", inputs: ["html","resize","lnplot","TopLevel","dt","display"], body: async (html,resize,lnplot,TopLevel,dt,display) => {
+display(await(
+html.fragment`<div class="grid grid-cols-3">
+  <div class="card grid-colspan-2">
+    <h2>Listening Over Time</h2>
+    <h3>
+      7d <b style="color: var(--theme-spotify);">—</b> moving average
+    </h3>
+    ${resize((width) => lnplot(width))}
+  </div>
+  <div class="card ">
+    <h2>Top 20 Songs</h2>
+    <h3>Boy have I changed</h3>
+    ${resize((width) => TopLevel(
+      dt.groupby("song").count({ as: "value" }), 
+      { width, y: 'song', limit: 20, fill: "var(--theme-spotify)"})
+    )}
+  </div>
+</div>`
+))
+}});
+
+define({id: "fb07642b", inputs: ["utcFormat","Plot","gpdt"], outputs: ["tmFormat","lnplot"], body: (utcFormat,Plot,gpdt) => {
+const tmFormat = utcFormat("%B %d, %Y")
+const lnplot = (width) =>
+  Plot.plot({
+    width,
+    height: 450,
+    round: true,
+    marks: [
+      Plot.axisY({ anchor: "right", label: null }),
+      Plot.areaY(gpdt, {
+        x: "date",
+        y: "dsongs",
+        curve: "step",
+        fillOpacity: 0.2,
+      }),
+      Plot.ruleY([0]),
+      Plot.lineY(
+        gpdt,
+        Plot.windowY(
+          { k: 7, anchor: "start", strict: true },
+          {
+            channels: {
+              date: {
+                value: "date",
+                label: "Date:"
+              },
+              total: {
+                value: "dsongs",
+                label: "Total:"
+              }
+            },
+            tip: {
+              format: {
+                date: d => tmFormat(d),
+                total: true,
+                x: false,
+                y: false
+              }
+            },
+            x: "date",
+            y: "dsongs",
+            stroke: "var(--theme-spotify)",
+            curve: "basis",
+          }
+        )
+      ),
+    ],
+  })
+return {tmFormat,lnplot};
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Ismael Vargas</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Posts</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./college_majors">US College Majors</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./spotify_history">My Spotify History</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:db026b08:--></div>
+<div class="observablehq observablehq--block"><!--:28151d1a:--></div>
+<div class="observablehq observablehq--block"><!--:6b2860f9:--></div>
+<div class="observablehq observablehq--block"><!--:9bb07466:--></div>
+<div class="observablehq observablehq--block"><!--:475d3f5f:--></div>
+<div class="observablehq observablehq--block"><!--:37c5f760:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0362964f:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f298cd72:--></div>
+<div class="observablehq observablehq--block"><!--:fb07642b:--></div>
+<style>
+  :root {
+    --theme-spotify: #1ed760;
+  }
+</style></main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
+</footer>
+</div>
