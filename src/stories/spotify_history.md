@@ -1,7 +1,7 @@
 ---
 title: My Spotify History
 toc: false
-theme: dashboard
+theme: wide
 ---
 
 ```js
