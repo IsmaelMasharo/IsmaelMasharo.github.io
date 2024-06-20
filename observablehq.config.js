@@ -13,7 +13,7 @@ export default {
       // path: "/stories/",
       pages: [
         {name: "US College Majors", path: "/stories/college_majors"},
-        {name: "My Spotify History", path: "/stories/spotify_history"},
+        {name: "My Spotify Dashboard", path: "/stories/spotify_history"},
       ]
     },
   ],
@@ -25,7 +25,7 @@ export default {
   root: "src",
 
   // Some additional configuration options and their defaults:
-  // theme: "default", // try "light", "dark", "slate", etc.
+  theme: "dark", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   footer: `Built with <a href="https://observablehq.com/">Observable</a>.`, // what to show in the footer (HTML)
   // sidebar: true, // whether to show the sidebar

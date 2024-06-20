@@ -14,7 +14,7 @@ import { csvParse, utcParse } from "npm:d3"
   flex-direction: column;
   align-items: center;
   font-family: var(--sans-serif);
-  margin: 4rem 0 8rem;
+  margin: 4rem 0;
   text-wrap: balance;
   text-align: center;
 }
@@ -23,7 +23,7 @@ import { csvParse, utcParse } from "npm:d3"
   padding: .5rem;
   margin: 2rem 0;
   max-width: none;
-  font-size: 14vw;
+  font-size: 3em;
   font-weight: 900;
   line-height: 1;
   background: linear-gradient(30deg, var(--theme-foreground-focus), currentColor);
@@ -42,7 +42,10 @@ import { csvParse, utcParse } from "npm:d3"
   color: var(--theme-foreground-alt);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 600px) {
+  .hero {
+    margin: 4rem 0 8rem;
+  }
   .hero h1 {
     font-size: 4em;
   }
@@ -61,7 +64,7 @@ import { csvParse, utcParse } from "npm:d3"
 
 ```html
 <div class="hero">
-  <h1>I'm Ismael<br>Data Explorer</h1>
+  <h1>I'm Ismael<br>Data&nbsp;Explorer</h1>
   <h2>
     I think about
     <span style="border-bottom: solid 2px #4269d0;">data</span> and use
@@ -209,18 +212,9 @@ const jobExp = [
     end: "Jun 2024",
     at: "Freelance",
     sector: "Education, eLearning",
-    jobTitle: "Freelance",
+    jobTitle: "Data Scientist",
     shortDescription:
-      "A mix of Data, Web, and Business related tasks, developing new abilities while traveling around Latam.",
-    description: ["Design", "Photography"],
-    skills: [
-      "Figma",
-      "Wordpress",
-      "Adobe Premiere",
-      "Hotmart",
-      "Photography",
-      "Product Live Launch",
-    ],
+      "Mixing Data, Web, and Business knowledge, developing new abilities while traveling around Latam.",
   },
   {
     start: "Apr 2021",
@@ -230,30 +224,6 @@ const jobExp = [
     jobTitle: "UX Data Analyst",
     shortDescription:
       "Analyzed user behavior, developed business metrics, and communicated insights to support a product-led conversion strategy.",
-    description: [
-      "Conducted user behavior analysis, driving insights for onboarding redesign and product tier optimization to support a product-led conversion strategy.",
-      "Analyzed user engagement, retention, and conversion funnels using Python and Postgresql, documenting and communicating key findings.",
-      "Collaborated with the product team by proposing design alternatives in Figma and validating them through A/B testing.",
-      "Interviewed internal clients to gather data requirements, prototyping, and crafting visualizations using PowerBI and JavaScript to enable data-driven decision-making.",
-      "Led the implementation of event tagging for user interactions within a React app, enabling comprehensive event tracking in Mixpanel.",
-      "Evaluated emerging technologies, including BI as code, high-performance databases, and LLMs, to accelerate query and visualization loading times, enhancing developer and user experience.",
-      ,
-    ],
-    skills: [
-      "Statistics",
-      "Storytelling",
-      "UX",
-      "Power BI",
-      "Machine Learning",
-      "Dbt",
-      "A/B testing",
-      "Mixpanel",
-      "R",
-      "Python",
-      "SQL",
-      "Excel",
-      "JavaScript",
-    ],
   },
   {
     start: "Jun 2020",
@@ -263,23 +233,6 @@ const jobExp = [
     jobTitle: "Beckend Engineer",
     shortDescription:
       "Explored new solutions as part of the Digital Transformation Lab team to improve user experience.",
-    description: [
-      "Designed custom visualizations using D3, React, and TypeScript, refining marketing metrics tracked within the dashboards.",
-      "Leveraged BigQuery to unlock deeper insights beyond default Firebase and Google Analytics reports, enabling exploration of a broader range of business questions.",
-      "Built responsive email templates using SendGrid and integrated Twilio's API for push notifications in our mobile apps, supporting personalized and automated communication.",
-      "Deployed Docker applications on AWS instances, implementing testing and deployment strategies for performance and scalability.",
-    ],
-    skills: [
-      "Docker",
-      "Python",
-      "JavaScript",
-      "D3",
-      "SQL",
-      "Figma",
-      "GCP",
-      "SCRUM",
-      "Git",
-    ],
   },
   {
     start: "Sep 2018",
@@ -289,26 +242,6 @@ const jobExp = [
     jobTitle: "Software Engineer",
     shortDescription:
       "Implemented a real-time delivery tracking app featuring live maps to visualize on-demand deliveries.",
-    description: [
-      "Implemented a real-time delivery tracking app using React, Django, and WebSockets, featuring live maps to visualize on-demand deliveries.",
-      "Developed new features to optimize delivery management for B2C and B2B customers, conducting unit tests to ensure functionality and quality before launch.",
-      "Enhanced the application to ensure robustness against new time zones in preparation for the company's expansion to new countries.",
-      "Analyzed geospatial data in NoSQL databases to visualize areas with higher concentrations of orders using Plotly and Mapbox, contributing to increased order completion rates.",
-    ],
-    skills: [
-      "AWS",
-      "Django",
-      "React",
-      "PostgreSQL",
-      "Backend - Frontend",
-      "DataBase Modeling",
-      "Software Architectural Design",
-      "SQL",
-      "Python",
-      "JavaScript",
-      "SCRUM",
-      "Git",
-    ],
   },
   {
     start: "Feb 2018",
@@ -318,8 +251,6 @@ const jobExp = [
     jobTitle: "Full Stack Developer Intern",
     shortDescription:
       "Developed a Cryptocurrency Trading Exchange app, handling visualizations of real-time stock changes.",
-    description: "",
-    skills: ["Flask", "Python", "React", "JavaScript", "HTML", "CSS"],
   },
   {
     start: "Aug 2017",
@@ -329,16 +260,6 @@ const jobExp = [
     jobTitle: "Research Assistant",
     shortDescription:
       "Researched and designed a computer vision algorithms for a state-funded project about meat quality control.",
-    skills: [
-      "Statistics",
-      "Research",
-      "Data Analysis",
-      "Computer Vision",
-      "Python",
-      "C++",
-      "Excel",
-      "Arduino",
-    ],
   },
 ]
 ```
