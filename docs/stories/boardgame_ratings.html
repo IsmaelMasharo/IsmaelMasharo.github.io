@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Predicting Board Games Ratings | Ismael Vargas</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.css">
+<link rel="modulepreload" href="../_observablehq/client.js">
+<link rel="modulepreload" href="../_observablehq/runtime.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.js">
+<link rel="icon" href="../_file/assets/ismael-favicon.0c0e520b.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.js";
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Ismael Vargas</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Posts</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./college_majors">US College Majors</a></li>
+    <li class="observablehq-link"><a href="./spotify_history">My Spotify Dashboard</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./boardgame_ratings">Predicting Board Game Ratings</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#data-understanding">Data Understanding</a></li>
+<li class="observablehq-secondary-link"><a href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+<li class="observablehq-secondary-link"><a href="#model-building">Model Building</a></li>
+<li class="observablehq-secondary-link"><a href="#model-pipeline">Model pipeline</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="predicting-board-games-ratings" tabindex="-1"><a class="observablehq-header-anchor" href="#predicting-board-games-ratings">Predicting Board Games Ratings</a></h1>
+<p>The following analysis uses the data provided by the <a href="https://github.com/rfordatascience/tidytuesday" target="_blank" rel="noopener noreferrer">#TidyTuesday</a> social data project. The main focus here is to explain the steps behind my analysis of the provided data.</p>
+<p>The <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-03-12" target="_blank" rel="noopener noreferrer">dataset</a> contains details about Board Games including crowd-sourced ratings. Assuming that ratings are important for a Board Game, let's say to be profitable, the analysis aims to predict ratings by developing a machine learning model using R.</p>
+<p>Since the outcome variable is provided and it takes a continuous value the problem will be framed as a <strong>supervised learning regression model</strong>.</p>
+<h2 id="data-understanding" tabindex="-1"><a class="observablehq-header-anchor" href="#data-understanding">Data Understanding</a></h2>
+<p>Before anything is a good idea to get feel about the data first, to asses distribution types, missing values, formatting issues, or other relevant steps to be handled prior to exploration.</p>
+<pre data-language="r"><code class="language-r"><span class="hljs-comment"># Used libraries</span>
+library<span class="hljs-punctuation">(</span>tidyverse<span class="hljs-punctuation">)</span>
+library<span class="hljs-punctuation">(</span>skimr<span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># Loading the data</span>
+board_games_raw <span class="hljs-operator">&lt;-</span> read_csv<span class="hljs-punctuation">(</span><span class="hljs-string">"board_games.csv"</span><span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># Assesing overall details, shape</span>
+skim<span class="hljs-punctuation">(</span>board_games_raw<span class="hljs-punctuation">)</span>
+board_games_raw <span class="hljs-operator">|&gt;</span> slice_head<span class="hljs-punctuation">(</span>n <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> glimpse<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<details>
+<summary>Output</summary>
+<pre>── Variable type: character 
+   skim_variable n_missing complete_rate min   max empty n_unique whitespace
+ 1 description           0        1       49 11476     0    10528          0
+ 2 image                 1        1.00    40    44     0    10527          0
+ 3 name                  0        1        1    84     0    10357          0
+ 4 thumbnail             1        1.00    42    46     0    10527          0
+ 5 artist             2773        0.737    3  6860     0     4641          0
+ 6 category             94        0.991    4   173     0     3860          0
+ 7 compilation       10122        0.0389   4   734     0      336          0
+ 8 designer            126        0.988    3   184     0     4678          0
+ 9 expansion          7780        0.261    2 11325     0     2634          0
+10 family             2808        0.733    2  1779     0     3918          0
+11 mechanic            950        0.910    6   314     0     3209          0
+12 publisher             3        1.00     2  2396     0     5512          0
+<p>── Variable type: numeric
+skim_variable  n_missing complete_rate     mean        sd      p0     p25      p50       p75      p100 hist
+1 game_id                0             1 62059.   66224.       1    5444.   28822.   126410.   216725    ▇▁▁▂▁
+2 max_players            0             1     5.66    18.9      0       4        4         6       999    ▇▁▁▁▁
+3 max_playtime           0             1    91.3    660.       0      30       45        90     60000    ▇▁▁▁▁
+4 min_age                0             1     9.71     3.45     0       8       10        12        42    ▅▇▁▁▁
+5 min_players            0             1     2.07     0.664    0       2        2         2         9    ▁▇▁▁▁
+6 min_playtime           0             1    80.9    638.       0      25       45        90     60000    ▇▁▁▁▁
+7 playing_time           0             1    91.3    660.       0      30       45        90     60000    ▇▁▁▁▁
+8 year_published         0             1  2003.      12.3   1950    1998     2007      2012      2016    ▁▁▁▂▇
+9 average_rating         0             1     6.37     0.850    1.38    5.83     6.39      6.94      9.00 ▁▁▃▇▁
+10 users_rated            0             1   870.    2880.      50      85      176       518     67655    ▇▁▁▁▁</p>
+<p>── Columns: 22
+$ game_id        <dbl> 1
+$ description    <chr> "Die Macher is a game about seven sequential political…"
+$ image          <chr> "<a href="../cf.geekdo-images.com/images/pic159509.jpg">//cf.geekdo-images.com/images/pic159509.jpg</a>"
+$ max_players    <dbl> 5
+$ max_playtime   <dbl> 240
+$ min_age        <dbl> 14
+$ min_players    <dbl> 3
+$ min_playtime   <dbl> 240
+$ name           <chr> "Die Macher"
+$ playing_time   <dbl> 240
+$ thumbnail      <chr> "<a href="../cf.geekdo-images.com/images/pic159509_t.jpg">//cf.geekdo-images.com/images/pic159509_t.jpg</a>"
+$ year_published <dbl> 1986
+$ artist         <chr> "Marcus Gschwendtner"
+$ category       <chr> "Economic,Negotiation,Political"
+$ compilation    <chr> NA
+$ designer       <chr> "Karl-Heinz Schmiel"
+$ expansion      <chr> NA
+$ family         <chr> "Country: Germany,Valley Games Classic Line"
+$ mechanic       <chr> "Area Control / Area Influence,Auction/Bidding,Dice…"
+$ publisher      <chr> "Hans im Glück Verlags-GmbH,Moskito Spiele,Valley Games,…"
+$ average_rating <dbl> 7.66508
+$ users_rated    <dbl> 4498
+</dbl></dbl></chr></chr></chr></chr></chr></chr></chr></chr></dbl></chr></dbl></chr></dbl></dbl></dbl></dbl></dbl></chr></chr></dbl></p></pre><p></p>
+</details>
+<p>An initial skimming reveals the following:</p>
+<ul>
+<li>
+<p>From the strings variables <em>image</em> and <em>thumbnail</em> provide links to the game cover but would hardly be useful.</p>
+</li>
+<li>
+<p>The variables <em>expansion</em> and <em>compilation</em> have the highest missing values, but only because they contain values for when the game has those features. If taken into account it would be a good idea to convert them to booleans instead.</p>
+</li>
+<li>
+<p>The number of users who rated a game could introduce noise in the actual ratings. Maybe set a threshold for keeping observations above a certain level.</p>
+</li>
+<li>
+<p>The variables <em>family</em>, <em>mechanic</em>, <em>publisher</em>, and <em>category</em> seem to be multilevel factors, meaning that a single observation can have multiple values, in this case, comma separated.</p>
+</li>
+</ul>
+<hr>
+<p>Since the goal is to develop a machine learning model, a subset of the data will be left on hold for later model evaluation.</p>
+<pre data-language="r"><code class="language-r"><span class="hljs-comment"># Setting a seed for reproducibility</span>
+set.seed<span class="hljs-punctuation">(</span><span class="hljs-number">111</span><span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># Splitting the data</span>
+board_games_split <span class="hljs-operator">&lt;-</span> initial_split<span class="hljs-punctuation">(</span>board_games_raw<span class="hljs-punctuation">)</span>
+board_games <span class="hljs-operator">&lt;-</span> training<span class="hljs-punctuation">(</span>board_games_split<span class="hljs-punctuation">)</span>
+board_games_test <span class="hljs-operator">&lt;-</span> testing<span class="hljs-punctuation">(</span>board_games_split<span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># For model tunning</span>
+set.seed<span class="hljs-punctuation">(</span><span class="hljs-number">222</span><span class="hljs-punctuation">)</span>
+game_folds <span class="hljs-operator">&lt;-</span> vfold_cv<span class="hljs-punctuation">(</span>board_games<span class="hljs-punctuation">)</span>
+</code></pre>
+<h2 id="exploratory-data-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#exploratory-data-analysis">Exploratory Data Analysis</a></h2>
+<p><strong>How are rating values distributed?</strong></p>
+<p>From the histogram below ratings appear to be normally distributed with fewer observations in the left tail. Filtering for games with at least 200 ratings doesn't seem to be changing the distribution, only the tail at lower ratings gets reduced, probably because people don't usually buy bad-rated games, aka, fewer people rating them.</p>
+<pre data-language="r"><code class="language-r">board_games <span class="hljs-operator">|&gt;</span>
+  <span class="hljs-comment"># toggling the filter doesn't seem to change the distribution</span>
+  filter<span class="hljs-punctuation">(</span>users_rated <span class="hljs-operator">&gt;</span> <span class="hljs-number">200</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>average_rating<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_histogram<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/rating_histogram.12747a2e.svg" alt="rating histogram" height="400">
+<p><strong>How do ratings vary considering the number of users who rated the game?</strong></p>
+<p>The larger the sample size (users rated), the lower the rating noise and the more concentrated it is around 7.5. This is just the central limit theorem in real life.</p>
+<pre data-language="r"><code class="language-r">board_games <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>users_rated<span class="hljs-punctuation">,</span> average_rating<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_point<span class="hljs-punctuation">(</span>alpha <span class="hljs-operator">=</span> <span class="hljs-number">0.5</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/rating_vs_users_rated.568763ae.png" alt="rating histogram" height="400">
+<p><strong>What is the evolution of total games published by year?</strong></p>
+<p>There are more board games published since 2000, this could indicate that board games have become more popular over the years, not conclusive though without contrast with external sources of information. There was a decrease in 2016, though it's probably because the dataset was aggregated during that year.</p>
+<pre data-language="r"><code class="language-r">board_games <span class="hljs-operator">|&gt;</span>
+  count<span class="hljs-punctuation">(</span>year_published<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  arrange<span class="hljs-punctuation">(</span>desc<span class="hljs-punctuation">(</span>year_published<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>year_published<span class="hljs-punctuation">,</span> n<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_line<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/games_over_years.e3523340.svg" alt="rating histogram" height="400">
+<!-- ![games over years](../data/boardgame_ratings/games_over_years.svg) -->
+<p><strong>What is the distribution of maximum recommended playtime?</strong></p>
+<p>The units of measurement are in minutes. But when building the plot some weird values appeared: play times range from 0 till 60000 (a thousand hours or game). Doesn't seem too realistic, or does it 🤔?. By reducing the range of the variable the distribution keeps showing a long right tail. This is kind of common when dealing with units of time. By taking the logarithm it approximates a normal distribution. This will be important when building the model.</p>
+<pre data-language="r"><code class="language-r">board_games <span class="hljs-operator">|&gt;</span>
+  filter<span class="hljs-punctuation">(</span>max_playtime <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span> max_playtime <span class="hljs-operator">&lt;</span> <span class="hljs-number">1000</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  mutate<span class="hljs-punctuation">(</span>max_playtime_hours <span class="hljs-operator">=</span> max_playtime <span class="hljs-operator">/</span> <span class="hljs-number">60</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>max_playtime_hours<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_histogram<span class="hljs-punctuation">(</span>binwidth <span class="hljs-operator">=</span> <span class="hljs-number">.25</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  scale_x_log10<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/max_playtime.7943aef3.svg" alt="rating histogram" height="400">
+<p><strong>The most common board game categories, families?</strong></p>
+<p>As seen previously some of the categorical variables can take many values, as in the case of the board game category. Some feature engineering is done to extract the values in a more tidy fashion to make it easier to work with for both visualization and model building.</p>
+<pre data-language="r"><code class="language-r">categorical_vars <span class="hljs-operator">&lt;-</span> board_games <span class="hljs-operator">|&gt;</span>
+  select<span class="hljs-punctuation">(</span>game_id<span class="hljs-punctuation">,</span> name<span class="hljs-punctuation">,</span> family<span class="hljs-punctuation">,</span> category<span class="hljs-punctuation">,</span> artist<span class="hljs-punctuation">,</span> designer<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  pivot_longer<span class="hljs-punctuation">(</span>
+    cols <span class="hljs-operator">=</span> <span class="hljs-operator">!</span><span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span><span class="hljs-string">"game_id"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"name"</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span>
+    names_to <span class="hljs-operator">=</span> <span class="hljs-string">"type"</span><span class="hljs-punctuation">,</span>
+    values_to <span class="hljs-operator">=</span> <span class="hljs-string">"value"</span>
+  <span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  filter<span class="hljs-punctuation">(</span><span class="hljs-operator">!</span><span class="hljs-built_in">is.na</span><span class="hljs-punctuation">(</span>value<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  separate_longer_delim<span class="hljs-punctuation">(</span>value<span class="hljs-punctuation">,</span> delim <span class="hljs-operator">=</span> <span class="hljs-string">","</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  arrange<span class="hljs-punctuation">(</span>game_id<span class="hljs-punctuation">)</span>
+</code></pre>
+<p>Having one observation per category makes it easier to compute aggregations, and answer the question about the frequency of the values present in each categorical variable.</p>
+<pre data-language="r"><code class="language-r">categorical_vars <span class="hljs-operator">|&gt;</span>
+  count<span class="hljs-punctuation">(</span>type<span class="hljs-punctuation">,</span> value<span class="hljs-punctuation">,</span> sort<span class="hljs-operator">=</span><span class="hljs-literal">TRUE</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  group_by<span class="hljs-punctuation">(</span>type<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  slice_max<span class="hljs-punctuation">(</span>n<span class="hljs-punctuation">,</span> n <span class="hljs-operator">=</span> <span class="hljs-number">10</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ungroup<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  mutate<span class="hljs-punctuation">(</span>
+    value <span class="hljs-operator">=</span> fct_reorder<span class="hljs-punctuation">(</span>value<span class="hljs-punctuation">,</span> n<span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span>
+    type <span class="hljs-operator">=</span> fct_reorder<span class="hljs-punctuation">(</span>type<span class="hljs-punctuation">,</span> n<span class="hljs-punctuation">,</span> .desc <span class="hljs-operator">=</span> <span class="hljs-literal">TRUE</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>n<span class="hljs-punctuation">,</span> value<span class="hljs-punctuation">,</span> fill <span class="hljs-operator">=</span> type<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_col<span class="hljs-punctuation">(</span>show.legend <span class="hljs-operator">=</span> <span class="hljs-literal">FALSE</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  facet_wrap<span class="hljs-punctuation">(</span><span class="hljs-operator">~</span>type<span class="hljs-punctuation">,</span> scales <span class="hljs-operator">=</span> <span class="hljs-string">"free_y"</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/top_categories.c3b3d178.svg" alt="rating histogram" height="400">
+<p>By looking at the plot, the category of the game has more occurrences than other variables like <em>designer</em>. Nonetheless, it is not the case that game category beats all other variables since, for example, the most common family game <em>Crowfunding</em> has more occurrences than the remaining after the top 3 category games. So other categorical variables could have predictive power as well.</p>
+<h2 id="model-building" tabindex="-1"><a class="observablehq-header-anchor" href="#model-building">Model Building</a></h2>
+<p>Without considering any variable besides the rating and using it as a base model, the residual standard error is 0.8497, meaning that by just taking the average of ratings a new prediction is expected to be off by 0.8497 rating points.</p>
+<pre data-language="r"><code class="language-r">lm<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operator">~</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span> board_games<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  summary<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<pre>Call:
+lm(formula = average_rating ~ 1, data = board_games)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9919 -0.5346  0.0207  0.5663  2.6278 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 6.376076   0.009484   672.3   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8429 on 7898 degrees of freedom
+</pre>
+<h3 id="warming-out-with-predictors" tabindex="-1"><a class="observablehq-header-anchor" href="#warming-out-with-predictors">Warming out with predictors</a></h3>
+<p>Using max_players to explain the variation in ratings has almost no effect. The residual standard error is almost identical. But it does say that games with more players tend to get lower ratings by a minuscule amount: for every unit increment in the number of players, the rating drops by -0.0014.</p>
+<pre data-language="r"><code class="language-r">lm<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operator">~</span> max_players<span class="hljs-punctuation">,</span> board_games<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  summary<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<pre>Call:
+lm(formula = average_rating ~ max_players, data = board_games)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9887 -0.5356  0.0212  0.5652  2.6282 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  6.3841165  0.0099276 643.069  &lt; 2e-16 ***
+max_players -0.0014050  0.0005149  -2.729  0.00637 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8426 on 7897 degrees of freedom
+Multiple R-squared:  0.000942,	Adjusted R-squared:  0.0008155 
+F-statistic: 7.446 on 1 and 7897 DF,  p-value: 0.006371
+</pre>
+<p>By exploring the distribution of maximum recommended players something similar to the maximum recommended play time arises, in that it is probably useful to convert it first to a logarithmic scale.</p>
+<pre data-language="r"><code class="language-r">board_games <span class="hljs-operator">|&gt;</span>
+  filter<span class="hljs-punctuation">(</span>max_players <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>max_players<span class="hljs-punctuation">,</span> average_rating<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_point<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_smooth<span class="hljs-punctuation">(</span>method<span class="hljs-operator">=</span><span class="hljs-string">'lm'</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  scale_x_log10<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/max_players_vs_ratings.db750f9c.png" alt="rating histogram" height="400">
+<p>So, when transforming the max_players to a log scale it starts to get a greater effect: <strong>for every doubling of the number of players the rating is expected to decrease by 0.17785</strong>.</p>
+<p>Nevertheless, the residual standard error doesn't improve, 0.84</p>
+<pre data-language="r"><code class="language-r"><span class="hljs-comment"># adding 1 to avoid 0 players</span>
+lm<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operator">~</span> log2<span class="hljs-punctuation">(</span>max_players <span class="hljs-operator">+</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> board_games<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  summary<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<pre>Call:
+lm(formula = average_rating ~ log2(max_players + 1), data = board_games)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8554 -0.5293  0.0206  0.5644  2.6980 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            6.81908    0.03279   207.9   &lt;2e-16 ***
+log2(max_players + 1) -0.18280    0.01297   -14.1   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8326 on 7897 degrees of freedom
+Multiple R-squared:  0.02455,	Adjusted R-squared:  0.02442 
+F-statistic: 198.7 on 1 and 7897 DF,  p-value: &lt; 2.2e-16
+</pre>
+<p>Taking max_playtime into account exposes that:</p>
+<ul>
+<li>
+<p>Every doubling in the recommended number of players the rating is expected to decrease by 0.15.</p>
+</li>
+<li>
+<p>Every doubling in the recommended play time the rating is expected to increase by 0.13.</p>
+</li>
+</ul>
+<p>So, <strong>longer games with fewer players tend to score better</strong>. By a little. Now it is a slightly better model than the baseline since the residual standard error has decreased.</p>
+<pre data-language="r"><code class="language-r">lm<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operator">~</span>
+     log2<span class="hljs-punctuation">(</span>max_players <span class="hljs-operator">+</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+     log2<span class="hljs-punctuation">(</span>max_playtime <span class="hljs-operator">+</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> board_games<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  summary<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<pre>Call:
+lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
+    1), data = board_games)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9233 -0.5041  0.0314  0.5326  2.8203 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             6.062075   0.045713  132.61   &lt;2e-16 ***
+log2(max_players + 1)  -0.161968   0.012587  -12.87   &lt;2e-16 ***
+log2(max_playtime + 1)  0.127952   0.005559   23.02   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.806 on 7896 degrees of freedom
+Multiple R-squared:  0.08587,	Adjusted R-squared:  0.08564 
+F-statistic: 370.9 on 2 and 7896 DF,  p-value: &lt; 2.2e-16
+</pre>
+<p>By taking just these features into account the model outperforms the baseline but on their own can't explain the variation on the ratings, and this is exposed by looking at the R-squared: <strong>the predictors explain only about ~9% of the variation of the ratings.</strong> So, it is necessary to include more relevant predictors or a different combination of them.</p>
+<h3 id="exploring-other-variables" tabindex="-1"><a class="observablehq-header-anchor" href="#exploring-other-variables">Exploring other variables</a></h3>
+<ul>
+<li>
+<p>max_playtime and max_players are probably correlated to their <em>min</em> equivalents, so it's reasonable to skip them for now since correlated features are not well suited to be modeled linearly.</p>
+</li>
+<li>
+<p>The average rating has been increasing over the years and not by a little. The trend is not quite linear, but it's not unreasonable to model it in that way.</p>
+</li>
+</ul>
+<pre data-language="r"><code class="language-r">lm<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operator">~</span> 
+     log2<span class="hljs-punctuation">(</span>max_players <span class="hljs-operator">+</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+     log2<span class="hljs-punctuation">(</span>max_playtime <span class="hljs-operator">+</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+     year_published<span class="hljs-punctuation">,</span> board_games<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  summary<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<pre>Call:
+lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
+    1) + year_published, data = board_games)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9832 -0.4455  0.0215  0.4801  2.7404 
+
+Coefficients:
+                         Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            -46.691830   1.403317  -33.27   &lt;2e-16 ***
+log2(max_players + 1)   -0.198114   0.011632  -17.03   &lt;2e-16 ***
+log2(max_playtime + 1)   0.160830   0.005194   30.96   &lt;2e-16 ***
+year_published           0.026288   0.000699   37.61   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7423 on 7895 degrees of freedom
+Multiple R-squared:  0.2248,	Adjusted R-squared:  0.2245 
+F-statistic:   763 on 3 and 7895 DF,  p-value: &lt; 2.2e-16
+</pre>
+<p>By including the year in the model, the rating is expected to increase by 0.0264 and both the R-squared and the residual standard error had improved.</p>
+<p>Now, it's impossible to launch a game previous to the current year, but it's important to control for it, not because a new game with the same categories as one in let's say 1950 will score the same since the popularity of that category could have increased over the years, and it has in general.</p>
+<h3 id="modeling-categorical-variables" tabindex="-1"><a class="observablehq-header-anchor" href="#modeling-categorical-variables">Modeling categorical variables</a></h3>
+<p>Getting a sense of how the categorical features are related to the outcome variable would hint if there is a reason to include them in the modeling.</p>
+<pre data-language="r"><code class="language-r">board_games <span class="hljs-operator">|&gt;</span> 
+  inner_join<span class="hljs-punctuation">(</span>categorical_vars<span class="hljs-punctuation">,</span> by <span class="hljs-operator">=</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span><span class="hljs-string">"game_id"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"name"</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  filter<span class="hljs-punctuation">(</span>type <span class="hljs-operator">==</span> <span class="hljs-string">"artist"</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  mutate<span class="hljs-punctuation">(</span>value <span class="hljs-operator">=</span> fct_lump_n<span class="hljs-punctuation">(</span>value<span class="hljs-punctuation">,</span> n <span class="hljs-operator">=</span> <span class="hljs-number">15</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span>
+         value <span class="hljs-operator">=</span> fct_reorder<span class="hljs-punctuation">(</span>value<span class="hljs-punctuation">,</span> average_rating<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>average_rating<span class="hljs-punctuation">,</span> value<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_boxplot<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/ratings_boxplot_per_artists.1e57f7b7.svg" alt="rating histogram" height="400">
+<p>Comparing the distribution of average ratings per artist shows a correlation with higher or lower-rated games. A boxplot comparing the values shows actual differences in the rating based on <em>artist</em>. So, it seems reasonable to use categorical variables to model ratings.</p>
+<p>The difference in ratings per artist in this case should not be interpreted as causation, since a game with a higher rating could not be due to the artist but maybe a related feature, a good publisher for example.</p>
+<p>To use categorical features for machine learning models is necessary to encode the levels and set them as predictors. In this case, since the categorical variables can have multiple levels it is not possible to apply the traditional one-hot encoding with a reference category, since <strong>there's no implicit baseline</strong>: a game can have the category of Card Game but can also be labeled as Fantasy.</p>
+<p>Also, given the amount of category levels it would be reasonable to exclude the combinations with a minimum number of observations.</p>
+<pre data-language="r"><code class="language-r"><span class="hljs-comment"># Setting a threshold of at least 50 observations</span>
+features <span class="hljs-operator">&lt;-</span> categorical_vars <span class="hljs-operator">|&gt;</span> 
+  unite<span class="hljs-punctuation">(</span><span class="hljs-string">"feature"</span><span class="hljs-punctuation">,</span> type<span class="hljs-punctuation">,</span> value<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  add_count<span class="hljs-punctuation">(</span>feature<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  filter<span class="hljs-punctuation">(</span>n <span class="hljs-operator">&gt;=</span> <span class="hljs-number">50</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<p>Beyond the number of combinations, it is also possible that many will be correlated, thus, trying to make a regression with that many variables could lead to overfitting. To avoid that, a <strong>Lasso Regression Model</strong> is a better choice than Linear Regression since Lasso would filter out correlated features, penalizing features with little predictive power, reducing model complexity, and aiding with interpretability.</p>
+<pre data-language="r"><code class="language-r">library<span class="hljs-punctuation">(</span>glmnet<span class="hljs-punctuation">)</span>
+library<span class="hljs-punctuation">(</span>Matrix<span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># Creating an sparce binary matrix of categorical predictors</span>
+<span class="hljs-comment"># rows: game id - columns: categorical feature values</span>
+feature_matrix <span class="hljs-operator">&lt;-</span> features <span class="hljs-operator">|&gt;</span> 
+  cast_sparse<span class="hljs-punctuation">(</span>game_id<span class="hljs-punctuation">,</span> feature<span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># Outcome</span>
+ratings <span class="hljs-operator">&lt;-</span> board_games<span class="hljs-operator">$</span>average_rating<span class="hljs-punctuation">[</span>match<span class="hljs-punctuation">(</span>rownames<span class="hljs-punctuation">(</span>feature_matrix<span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> board_games<span class="hljs-operator">$</span>game_id<span class="hljs-punctuation">)</span><span class="hljs-punctuation">]</span>
+
+<span class="hljs-comment"># Lasso model</span>
+<span class="hljs-comment"># glmnet defaults to lasso (alpha = 1) and to linear model (family = "gaussian")</span>
+lasso_fit <span class="hljs-operator">&lt;-</span> glmnet<span class="hljs-punctuation">(</span>feature_matrix<span class="hljs-punctuation">,</span> ratings<span class="hljs-punctuation">)</span>
+
+plot<span class="hljs-punctuation">(</span>lasso_fit<span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/lasso_l1norm_vs_coef.0d36a7a7.png" alt="rating histogram" height="400">
+<p>The plot above shows how the predictor's coefficients get penalized by basically removing them at lower values of L1 Norm (<strong>sum of the absolute values of the coefficients</strong>), aka, large penalization (large values of the hyperparameter lambda). The algorithm keeps decreasing lambda and adding more parameters.</p>
+<pre data-language="r"><code class="language-r">lasso_fit <span class="hljs-operator">|&gt;</span> 
+  tidy<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  arrange<span class="hljs-punctuation">(</span>step<span class="hljs-punctuation">)</span>
+</code></pre>
+<pre># A tibble: 5,051 × 5
+   term                   step estimate lambda dev.ratio
+   <chr>                 <dbl>    <dbl>  <dbl>     <dbl>
+ 1 (Intercept)               1   6.38    0.244    0     
+ 2 (Intercept)               2   6.38    0.223    0.0143
+ 3 designer_(Uncredited)     2  -0.0969  0.223    0.0143
+ 4 (Intercept)               3   6.39    0.203    0.0262
+ 5 designer_(Uncredited)     3  -0.185   0.203    0.0262
+ 6 (Intercept)               4   6.39    0.185    0.0388
+ 7 category_Wargame          4   0.0147  0.185    0.0388
+ 8 designer_(Uncredited)     4  -0.263   0.185    0.0388
+ 9 (Intercept)               5   6.38    0.168    0.0538
+10 category_Wargame          5   0.0528  0.168    0.0538
+# ℹ 5,041 more rows
+</dbl></dbl></dbl></dbl></chr></pre>
+<p>On its own, the model's output it's not that useful since it shows all the possible values of lambda taken. The challenge is to choose an optimal value of lambda that minimizes the model error. Cross-validation can be used instead to select the best lambda.</p>
+<pre data-language="r"><code class="language-r"><span class="hljs-comment"># Ussing cv.glmnet to perform cross validation</span>
+cv_lasso_fit <span class="hljs-operator">&lt;-</span> 
+  cv.glmnet<span class="hljs-punctuation">(</span>feature_matrix<span class="hljs-punctuation">,</span> ratings<span class="hljs-punctuation">)</span>
+
+plot<span class="hljs-punctuation">(</span>cv_lasso_fit<span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/cv_lasso_glmnet.6efb3d8f.png" alt="rating histogram" height="400">
+<p>Lambda can take values starting at zero, so since the plot above shows the logarithm of lambda, its optimal values are between 0 and 1. In particular, the optimal lambda is set at around -6 (left vertical dotted line) which minimizes the model error (MSE). The line at -4 is one standard error from the optimal value. It is also a good value of lambda and it has the advantage of having fewer predictors, which can be good for interpretability (around ~70 parameters contribute to most of the gain).</p>
+<p>As lambda decreases the MSE goes down and it flattens out, so there's not much risk of overfitting, which would be the case if the error had started increasing again. This means that it is not a bad idea to lower the threshold set on the number of times a categorical variable value appears.</p>
+<pre data-language="r"><code class="language-r">chosen_lambda <span class="hljs-operator">&lt;-</span> cv_lasso_fit<span class="hljs-operator">$</span>lambda.1se
+
+cv_lasso_fit<span class="hljs-operator">$</span>glmnet.fit <span class="hljs-operator">|&gt;</span> 
+  tidy<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  filter<span class="hljs-punctuation">(</span>lambda <span class="hljs-operator">==</span> chosen_lambda<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  arrange<span class="hljs-punctuation">(</span>desc<span class="hljs-punctuation">(</span>estimate<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<pre># A tibble: 62 × 5
+   term                              step estimate lambda dev.ratio
+   <chr>                            <dbl>    <dbl>  <dbl>     <dbl>
+ 1 (Intercept)                         30    6.26  0.0165     0.293
+ 2 family_Solitaire Games              30    0.487 0.0165     0.293
+ 3 designer_Dean Essig                 30    0.445 0.0165     0.293
+ 4 category_Miniatures                 30    0.403 0.0165     0.293
+ 5 artist_Nicolás Eskubi               30    0.357 0.0165     0.293
+ 6 category_Civilization               30    0.344 0.0165     0.293
+ 7 family_Crowdfunding: Kickstarter    30    0.336 0.0165     0.293
+ 8 artist_Rodger B. MacGowan           30    0.311 0.0165     0.293
+ 9 category_Trains                     30    0.292 0.0165     0.293
+10 family_Combinatorial                30    0.265 0.0165     0.293
+# ℹ 52 more rows
+</dbl></dbl></dbl></dbl></chr></pre>
+<h2 id="model-pipeline" tabindex="-1"><a class="observablehq-header-anchor" href="#model-pipeline">Model pipeline</a></h2>
+<p>Since most of the steps when assessing models need to be applied to the testing and new data, operations like threshold setups, feature engineering, transformations, and others have to be specified more intuitively. Below is an implementation of the previous steps using the Tidymodels metapackage (recipes).</p>
+<pre data-language="r"><code class="language-r">library<span class="hljs-punctuation">(</span>textrecipes<span class="hljs-punctuation">)</span>
+
+split_categorical <span class="hljs-operator">&lt;-</span> <span class="hljs-keyword">function</span><span class="hljs-punctuation">(</span>x<span class="hljs-punctuation">)</span> <span class="hljs-punctuation">{</span>
+  x <span class="hljs-operator">|&gt;</span>
+    str_split<span class="hljs-punctuation">(</span><span class="hljs-string">","</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+    map<span class="hljs-punctuation">(</span>str_remove_all<span class="hljs-punctuation">,</span> <span class="hljs-string">"[:punct:]"</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+    map<span class="hljs-punctuation">(</span>str_squish<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+    map<span class="hljs-punctuation">(</span>str_to_lower<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+    map<span class="hljs-punctuation">(</span>str_replace_all<span class="hljs-punctuation">,</span> <span class="hljs-string">" "</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"_"</span><span class="hljs-punctuation">)</span>
+<span class="hljs-punctuation">}</span>
+
+categorical_columns <span class="hljs-operator">&lt;-</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span>
+  <span class="hljs-string">"family"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"category"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"artist"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"designer"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"publisher"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"mechanic"</span>
+<span class="hljs-punctuation">)</span>
+to_log <span class="hljs-operator">&lt;-</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span><span class="hljs-string">"max_players"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"max_playtime"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"min_age"</span><span class="hljs-punctuation">)</span>
+outcome <span class="hljs-operator">&lt;-</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span><span class="hljs-string">"average_rating"</span><span class="hljs-punctuation">)</span>
+identifiers <span class="hljs-operator">&lt;-</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span><span class="hljs-string">"game_id"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"name"</span><span class="hljs-punctuation">)</span>
+predictors <span class="hljs-operator">&lt;-</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span><span class="hljs-string">"year_published"</span><span class="hljs-punctuation">,</span> categorical_columns<span class="hljs-punctuation">,</span> to_log<span class="hljs-punctuation">)</span>
+selected_columns <span class="hljs-operator">&lt;-</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span>outcome<span class="hljs-punctuation">,</span> identifiers<span class="hljs-punctuation">,</span> predictors<span class="hljs-punctuation">)</span>
+
+get_data <span class="hljs-operator">&lt;-</span> <span class="hljs-keyword">function</span><span class="hljs-punctuation">(</span>df<span class="hljs-punctuation">)</span> <span class="hljs-punctuation">{</span>
+  df <span class="hljs-operator">|&gt;</span> select<span class="hljs-punctuation">(</span>all_of<span class="hljs-punctuation">(</span>selected_columns<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
+<span class="hljs-punctuation">}</span>
+
+data <span class="hljs-operator">&lt;-</span> get_data<span class="hljs-punctuation">(</span>board_games<span class="hljs-punctuation">)</span>
+
+game_recipe <span class="hljs-operator">&lt;-</span>
+  recipe<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operator">~</span> .<span class="hljs-punctuation">,</span> data <span class="hljs-operator">=</span> data<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  update_role<span class="hljs-punctuation">(</span>game_id<span class="hljs-punctuation">,</span> new_role <span class="hljs-operator">=</span> <span class="hljs-string">"id"</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  update_role<span class="hljs-punctuation">(</span>name<span class="hljs-punctuation">,</span> new_role <span class="hljs-operator">=</span> <span class="hljs-string">"name"</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  step_log<span class="hljs-punctuation">(</span>all_of<span class="hljs-punctuation">(</span>to_log<span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> base <span class="hljs-operator">=</span> <span class="hljs-number">2</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  step_tokenize<span class="hljs-punctuation">(</span>all_of<span class="hljs-punctuation">(</span>categorical_columns<span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> custom_token <span class="hljs-operator">=</span> split_categorical<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  step_tokenfilter<span class="hljs-punctuation">(</span>all_of<span class="hljs-punctuation">(</span>categorical_columns<span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> min_times <span class="hljs-operator">=</span> <span class="hljs-number">50</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  step_tf<span class="hljs-punctuation">(</span>all_of<span class="hljs-punctuation">(</span>categorical_columns<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># checking that recipe works as expected</span>
+<span class="hljs-comment"># game_prep &lt;- prep(game_recipe)</span>
+<span class="hljs-comment"># game_bake &lt;- bake(game_prep, new_data = NULL)</span>
+</code></pre>
+<p>One of the advantages of using Tidymodels' <em>recipes</em> is that they can encapsulate several types of transformations, making it easier to understand what should be done to the data before modeling.</p>
+<p>For Lasso Regression and other models with regularization, predictors are required to be on the same scale. That step is left out of the recipe above since the <em>glmnet</em> package takes care of that.</p>
+<p>With the transformation specified as a recipe, it is used below to feed the model-building workflow. Using Tidymodels makes the process of defining models and tuning hyperparameters more verbose than just using <em>glmnet</em> directly as done previously, but it gives more control over what is done. This can be useful to then transition to test a different model.</p>
+<pre data-language="r"><code class="language-r"><span class="hljs-comment"># Creating the workflow</span>
+game_wf <span class="hljs-operator">&lt;-</span> workflow<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  add_recipe<span class="hljs-punctuation">(</span>game_recipe<span class="hljs-punctuation">)</span>
+
+<span class="hljs-comment"># Tunning lambda</span>
+lasso_spec <span class="hljs-operator">&lt;-</span> linear_reg<span class="hljs-punctuation">(</span>
+    penalty <span class="hljs-operator">=</span> tune<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> mixture <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  set_engine<span class="hljs-punctuation">(</span><span class="hljs-string">"glmnet"</span><span class="hljs-punctuation">)</span>
+
+lambda_grid <span class="hljs-operator">&lt;-</span> grid_regular<span class="hljs-punctuation">(</span>penalty<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> levels <span class="hljs-operator">=</span> <span class="hljs-number">50</span><span class="hljs-punctuation">)</span>
+
+set.seed<span class="hljs-punctuation">(</span><span class="hljs-number">333</span><span class="hljs-punctuation">)</span>
+lasso_grid <span class="hljs-operator">&lt;-</span> game_wf <span class="hljs-operator">|&gt;</span> 
+  add_model<span class="hljs-punctuation">(</span>lasso_spec<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  tune_grid<span class="hljs-punctuation">(</span>
+    resamples <span class="hljs-operator">=</span> game_folds<span class="hljs-punctuation">,</span>
+    grid <span class="hljs-operator">=</span> lambda_grid
+  <span class="hljs-punctuation">)</span>
+</code></pre>
+<p>After the model has been tunned it is then time to asses their results and pick a value for the best hyperparameter.</p>
+<pre data-language="r"><code class="language-r">lasso_grid <span class="hljs-operator">|&gt;</span>
+  collect_metrics<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  ggplot<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>penalty<span class="hljs-punctuation">,</span> mean<span class="hljs-punctuation">,</span> color <span class="hljs-operator">=</span> .metric<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_errorbar<span class="hljs-punctuation">(</span>aes<span class="hljs-punctuation">(</span>ymin <span class="hljs-operator">=</span> mean <span class="hljs-operator">-</span> std_err<span class="hljs-punctuation">,</span> ymax <span class="hljs-operator">=</span> mean <span class="hljs-operator">+</span> std_err<span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span>
+    alpha <span class="hljs-operator">=</span> <span class="hljs-number">0.5</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  geom_line<span class="hljs-punctuation">(</span>linewidth <span class="hljs-operator">=</span> <span class="hljs-number">1.5</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  facet_wrap<span class="hljs-punctuation">(</span><span class="hljs-operator">~</span>.metric<span class="hljs-punctuation">,</span> scales <span class="hljs-operator">=</span> <span class="hljs-string">"free"</span><span class="hljs-punctuation">,</span> nrow <span class="hljs-operator">=</span> <span class="hljs-number">2</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  scale_x_log10<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span>
+  theme<span class="hljs-punctuation">(</span>legend.position <span class="hljs-operator">=</span> <span class="hljs-string">"none"</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<img src="../_file/data/boardgame_ratings/collected_metrics_lasso_grid.79a1354d.png" alt="rating histogram" height="400">
+<h3 id="last-fit-and-evaluation" tabindex="-1"><a class="observablehq-header-anchor" href="#last-fit-and-evaluation">Last fit and evaluation</a></h3>
+<p>Fitting the best model for the training set and evaluating the test set:</p>
+<pre data-language="r"><code class="language-r">lowest_rmse <span class="hljs-operator">&lt;-</span> lasso_grid <span class="hljs-operator">|&gt;</span>
+  select_by_one_std_err<span class="hljs-punctuation">(</span>metric <span class="hljs-operator">=</span> <span class="hljs-string">"rmse"</span><span class="hljs-punctuation">,</span> desc<span class="hljs-punctuation">(</span>penalty<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
+
+final_lasso <span class="hljs-operator">&lt;-</span> game_wf <span class="hljs-operator">|&gt;</span> 
+  add_model<span class="hljs-punctuation">(</span>lasso_spec<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span> 
+  finalize_workflow<span class="hljs-punctuation">(</span>lowest_rmse<span class="hljs-punctuation">)</span>
+
+last_fit<span class="hljs-punctuation">(</span>
+  final_lasso<span class="hljs-punctuation">,</span>
+  board_games_split
+<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
+  collect_metrics<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
+</code></pre>
+<pre># A tibble: 2 × 4
+  .metric .estimator .estimate .config             
+  <chr>   <chr>          <dbl> <chr>               
+1 rmse    standard       0.661 Preprocessor1_Model1
+2 rsq     standard       0.431 Preprocessor1_Model1
+</chr></dbl></chr></chr></pre></main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
+</footer>
+</div>
