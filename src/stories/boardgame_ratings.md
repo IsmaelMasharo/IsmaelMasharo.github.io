@@ -2,13 +2,15 @@
 toc: true
 ---
 
-# Predicting Board Games Ratings
+# Predicting Board Game Ratings
 
 The following analysis uses the data provided by the [#TidyTuesday](https://github.com/rfordatascience/tidytuesday) social data project. The main focus here is to explain the steps behind my analysis of the provided data.
 
 The [dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-03-12) contains details about Board Games including crowd-sourced ratings. Assuming that ratings are important for a Board Game, let's say to be profitable, the analysis aims to predict ratings by developing a machine learning model using R.
 
 Since the outcome variable is provided and it takes a continuous value the problem will be framed as a **supervised learning regression model**.
+
+---
 
 ## Data Understanding
 
@@ -93,8 +95,6 @@ An initial skimming reveals the following:
 
 - The variables _family_, _mechanic_, _publisher_, and _category_ seem to be multilevel factors, meaning that a single observation can have multiple values, in this case, comma separated.
 
----
-
 Since the goal is to develop a machine learning model, a subset of the data will be left on hold for later model evaluation.
 
 ```r
@@ -111,6 +111,8 @@ set.seed(222)
 game_folds <- vfold_cv(board_games)
 ```
 
+---
+
 ## Exploratory Data Analysis
 
 **How are rating values distributed?**
@@ -124,8 +126,9 @@ board_games |>
   ggplot(aes(average_rating)) +
   geom_histogram()
 ```
-
-<img src="../data/boardgame_ratings/rating_histogram.svg" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/rating_histogram.svg" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 **How do ratings vary considering the number of users who rated the game?**
 
@@ -137,7 +140,9 @@ board_games |>
   geom_point(alpha = 0.5)
 ```
 
-<img src="../data/boardgame_ratings/rating_vs_users_rated.png" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/rating_vs_users_rated.png" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 **What is the evolution of total games published by year?**
 
@@ -151,7 +156,9 @@ board_games |>
   geom_line()
 ```
 
-<img src="../data/boardgame_ratings/games_over_years.svg" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/games_over_years.svg" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 <!-- ![games over years](../data/boardgame_ratings/games_over_years.svg) -->
 
@@ -168,7 +175,9 @@ board_games |>
   scale_x_log10()
 ```
 
-<img src="../data/boardgame_ratings/max_playtime.svg" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/max_playtime.svg" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 **The most common board game categories, families?**
 
@@ -203,9 +212,13 @@ categorical_vars |>
   facet_wrap(~type, scales = "free_y")
 ```
 
-<img src="../data/boardgame_ratings/top_categories.svg" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/top_categories.svg" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 By looking at the plot, the category of the game has more occurrences than other variables like _designer_. Nonetheless, it is not the case that game category beats all other variables since, for example, the most common family game _Crowfunding_ has more occurrences than the remaining after the top 3 category games. So other categorical variables could have predictive power as well.
+
+---
 
 ## Model Building
 
@@ -216,6 +229,8 @@ lm(average_rating ~ 1, board_games) |>
   summary()
 ```
 
+<details>
+<summary>Output</summary>
 <pre>
 Call:
 lm(formula = average_rating ~ 1, data = board_games)
@@ -232,6 +247,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 Residual standard error: 0.8429 on 7898 degrees of freedom
 </pre>
+</details>
 
 ### Warming out with predictors
 
@@ -242,6 +258,8 @@ lm(average_rating ~ max_players, board_games) |>
   summary()
 ```
 
+<details>
+<summary>Output</summary>
 <pre>
 Call:
 lm(formula = average_rating ~ max_players, data = board_games)
@@ -261,6 +279,7 @@ Residual standard error: 0.8426 on 7897 degrees of freedom
 Multiple R-squared:  0.000942,	Adjusted R-squared:  0.0008155 
 F-statistic: 7.446 on 1 and 7897 DF,  p-value: 0.006371
 </pre>
+</details>
 
 By exploring the distribution of maximum recommended players something similar to the maximum recommended play time arises, in that it is probably useful to convert it first to a logarithmic scale.
 
@@ -272,8 +291,9 @@ board_games |>
   geom_smooth(method='lm') +
   scale_x_log10()
 ```
-
-<img src="../data/boardgame_ratings/max_players_vs_ratings.png" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/max_players_vs_ratings.png" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 So, when transforming the max_players to a log scale it starts to get a greater effect: **for every doubling of the number of players the rating is expected to decrease by 0.17785**.
 
@@ -285,6 +305,8 @@ lm(average_rating ~ log2(max_players + 1), board_games) |>
   summary()
 ```
 
+<details>
+<summary>Output</summary>
 <pre>
 Call:
 lm(formula = average_rating ~ log2(max_players + 1), data = board_games)
@@ -304,6 +326,7 @@ Residual standard error: 0.8326 on 7897 degrees of freedom
 Multiple R-squared:  0.02455,	Adjusted R-squared:  0.02442 
 F-statistic: 198.7 on 1 and 7897 DF,  p-value: < 2.2e-16
 </pre>
+</details>
 
 Taking max_playtime into account exposes that:
 
@@ -320,6 +343,8 @@ lm(average_rating ~
   summary()
 ```
 
+<details>
+<summary>Output</summary>
 <pre>
 Call:
 lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
@@ -341,6 +366,7 @@ Residual standard error: 0.806 on 7896 degrees of freedom
 Multiple R-squared:  0.08587,	Adjusted R-squared:  0.08564 
 F-statistic: 370.9 on 2 and 7896 DF,  p-value: < 2.2e-16
 </pre>
+</details>
 
 By taking just these features into account the model outperforms the baseline but on their own can't explain the variation on the ratings, and this is exposed by looking at the R-squared: **the predictors explain only about ~9% of the variation of the ratings.** So, it is necessary to include more relevant predictors or a different combination of them.
 
@@ -358,6 +384,8 @@ lm(average_rating ~
   summary()
 ```
 
+<details>
+<summary>Output</summary>
 <pre>
 Call:
 lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
@@ -380,6 +408,7 @@ Residual standard error: 0.7423 on 7895 degrees of freedom
 Multiple R-squared:  0.2248,	Adjusted R-squared:  0.2245 
 F-statistic:   763 on 3 and 7895 DF,  p-value: < 2.2e-16
 </pre>
+</details>
 
 By including the year in the model, the rating is expected to increase by 0.0264 and both the R-squared and the residual standard error had improved.
 
@@ -399,7 +428,9 @@ board_games |>
   geom_boxplot()
 ```
 
-<img src="../data/boardgame_ratings/ratings_boxplot_per_artists.svg" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/ratings_boxplot_per_artists.svg" alt="rating histogram" style="max-width: 100%;"/>
+</div>
 
 Comparing the distribution of average ratings per artist shows a correlation with higher or lower-rated games. A boxplot comparing the values shows actual differences in the rating based on *artist*. So, it seems reasonable to use categorical variables to model ratings.
 
@@ -429,16 +460,21 @@ feature_matrix <- features |>
   cast_sparse(game_id, feature)
 
 # Outcome
-ratings <- board_games$average_rating[match(rownames(feature_matrix), board_games$game_id)]
+ratings_mask <- match(
+  rownames(feature_matrix), 
+  board_games$game_id
+)
+ratings <- board_games$average_rating[ratings_mask]
 
 # Lasso model
-# glmnet defaults to lasso (alpha = 1) and to linear model (family = "gaussian")
 lasso_fit <- glmnet(feature_matrix, ratings)
 
 plot(lasso_fit)
 ```
 
-<img src="../data/boardgame_ratings/lasso_l1norm_vs_coef.png" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/lasso_l1norm_vs_coef.png" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 The plot above shows how the predictor's coefficients get penalized by basically removing them at lower values of L1 Norm (**sum of the absolute values of the coefficients**), aka, large penalization (large values of the hyperparameter lambda). The algorithm keeps decreasing lambda and adding more parameters.
 
@@ -448,6 +484,8 @@ lasso_fit |>
   arrange(step)
 ```
 
+<details>
+<summary>Output</summary>
 <pre>
 # A tibble: 5,051 × 5
    term                   step estimate lambda dev.ratio
@@ -464,6 +502,7 @@ lasso_fit |>
 10 category_Wargame          5   0.0528  0.168    0.0538
 # ℹ 5,041 more rows
 </pre>
+</details>
 
 On its own, the model's output it's not that useful since it shows all the possible values of lambda taken. The challenge is to choose an optimal value of lambda that minimizes the model error. Cross-validation can be used instead to select the best lambda.
 
@@ -475,7 +514,9 @@ cv_lasso_fit <-
 plot(cv_lasso_fit)
 ```
 
-<img src="../data/boardgame_ratings/cv_lasso_glmnet.png" alt="rating histogram"  height="400"/>
+<div class="image-container">
+<img src="../data/boardgame_ratings/cv_lasso_glmnet.png" alt="rating histogram"  style="max-width: 100%;" />
+</div>
 
 Lambda can take values starting at zero, so since the plot above shows the logarithm of lambda, its optimal values are between 0 and 1. In particular, the optimal lambda is set at around -6 (left vertical dotted line) which minimizes the model error (MSE). The line at -4 is one standard error from the optimal value. It is also a good value of lambda and it has the advantage of having fewer predictors, which can be good for interpretability (around \~70 parameters contribute to most of the gain).
 
@@ -490,6 +531,8 @@ cv_lasso_fit$glmnet.fit |>
   arrange(desc(estimate))
 ```
 
+<details>
+<summary>Output</summary>
 <pre>
 # A tibble: 62 × 5
    term                              step estimate lambda dev.ratio
@@ -506,6 +549,9 @@ cv_lasso_fit$glmnet.fit |>
 10 family_Combinatorial                30    0.265 0.0165     0.293
 # ℹ 52 more rows
 </pre>
+</details>
+
+---
 
 ## Model pipeline
 
@@ -523,29 +569,25 @@ split_categorical <- function(x) {
     map(str_replace_all, " ", "_")
 }
 
-categorical_columns <- c(
-  "family", "category", "artist", "designer", "publisher", "mechanic"
-)
-to_log <- c("max_players", "max_playtime", "min_age")
-outcome <- c("average_rating")
-identifiers <- c("game_id", "name")
-predictors <- c("year_published", categorical_columns, to_log)
-selected_columns <- c(outcome, identifiers, predictors)
+to_log <- c(
+  "max_players", "max_playtime", "min_age")
+categoricals <- c(
+  "family", "category", "artist", 
+  "designer", "publisher", "mechanic")
+selected_columns <- c(
+  "average_rating", "game_id", "name", 
+  "year_published", categoricals, to_log)
 
-get_data <- function(df) {
-  df |> select(all_of(selected_columns))
-}
-
-data <- get_data(board_games)
+data <- board_games |> select(selected_columns)
 
 game_recipe <-
   recipe(average_rating ~ ., data = data) |>
   update_role(game_id, new_role = "id") |>
   update_role(name, new_role = "name") |>
-  step_log(all_of(to_log), base = 2) |> 
-  step_tokenize(all_of(categorical_columns), custom_token = split_categorical) |>
-  step_tokenfilter(all_of(categorical_columns), min_times = 50) |>
-  step_tf(all_of(categorical_columns))
+  step_log(to_log, base = 2) |> 
+  step_tokenize(categoricals, custom_token = split_categorical) |>
+  step_tokenfilter(categoricals, min_times = 50) |>
+  step_tf(categoricals)
 
 # checking that recipe works as expected
 # game_prep <- prep(game_recipe)
@@ -585,15 +627,18 @@ After the model has been tunned it is then time to asses their results and pick 
 lasso_grid |>
   collect_metrics() |>
   ggplot(aes(penalty, mean, color = .metric)) +
-  geom_errorbar(aes(ymin = mean - std_err, ymax = mean + std_err),
-    alpha = 0.5) +
-  geom_line(linewidth = 1.5) +
+  geom_errorbar(
+    aes(ymin = mean - std_err, ymax = mean + std_err)) +
+  geom_line() +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   scale_x_log10() +
   theme(legend.position = "none")
 ```
 
-<img src="../data/boardgame_ratings/collected_metrics_lasso_grid.png" alt="rating histogram"  height="400"/>
+<div class="image-container" style="margin-bottom: 1rem;">
+<img src="../data/boardgame_ratings/collected_metrics_lasso_grid.png" alt="rating histogram"  style="max-width: 100%;" />
+</div>
+
 
 ### Last fit and evaluation
 
@@ -621,3 +666,9 @@ last_fit(
 1 rmse    standard       0.661 Preprocessor1_Model1
 2 rsq     standard       0.431 Preprocessor1_Model1
 </pre>
+
+<style>
+  .image-container {
+    max-width: 640px;
+  }
+</style>
