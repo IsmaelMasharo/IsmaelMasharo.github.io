@@ -87,7 +87,7 @@ import { csvParse, utcParse } from "npm:d3"
   >
     <h2>My Employment History 💼</h2>
     <h3>
-      I gravitated towards data and technology since graduated from college.
+      I gravitated towards software and data since graduated from college.
     </h3>
     <div>${ resize(jobsPlot) }</div>
   </div>
@@ -96,7 +96,7 @@ import { csvParse, utcParse } from "npm:d3"
     style="padding: 20px; overflow: hidden"
   >
     <h2>Skills in my Toolbelt 🛠️</h2>
-    <h3>Some of my favorite ones and the ones I frequently use.</h3>
+    <h3>Some of my favorite technologies and the ones I frequently use.</h3>
     <div style="padding: 2em">${longList(tools)}</div>
   </div>
 </div>
@@ -106,8 +106,7 @@ import { csvParse, utcParse } from "npm:d3"
 
 <div style="font-family: sans-serif; margin-top: 4rem;">
   <p>
-  This is my new portafolio, I'm migrating the old one... In the meantime
-  check out some of my previous Data Visualization and Data Science proyects 👇.
+  These are some of my previous data related proyects living outside of this page 👇.
   </p>
   <br>
 </div>
@@ -269,40 +268,40 @@ const jobExp = [
 ```js
 const tools = csvParse(
   `category,tool,order
-Data,PowerBI,1
+Data,Ggplot,1
 Developer,React,2
 Developer,Python,2
-Data,Jupyter,1
 Data,R,1
-Data,RStudio,1
-Data,Excel,1
 Data,PostgreSQL,1
 Developer,D3,1
-Design,Figma,3
 Analytics,Statistics,5
-Data,Streamlit,1
+Design,Figma,3
+Data,Observable Plot,1
+Data,Seaborn,1
+Data,Dyplr,1
+Data,Vega-Lite,1
 Design,Storytelling,4
 Data,DBT,1
 Analytics,Data Science,5
+Data,Excel,1
 Developer,GIT,2
+Data,Jupyter,1
 Analytics,A/B Testing,1
 Data,SQL,1
-Design,UX,3
-Analytics,Research,5
 Developer,AWS,2
+Design,UX,3
+Data,RStudio,1
+Data,Streamlit,1
+Analytics,Research,5
+Data,PowerBI,1
 Developer,Django,2
-Data,Pandas,1
 Developer,Javascript,2
-Data,Dyplr,1
-Data,Vega-Lite,1
+Data,Pandas,1
 Developer,Tailwind,2
-Data,Observable Plot,1
 Analytics,Machine Learning,5
 Design,SCRUM,3
-Data,ggplot,1
 Developer,HTML,2
-Data,seaborn,1
-Data,scypy,1
+Data,Scypy,1
 Developer,CSS,1
 `
 )
