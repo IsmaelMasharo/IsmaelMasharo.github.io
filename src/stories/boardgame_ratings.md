@@ -231,6 +231,7 @@ lm(average_rating ~ 1, board_games) |>
 
 <details>
 <summary>Output</summary>
+
 <pre>
 Call:
 lm(formula = average_rating ~ 1, data = board_games)
@@ -247,7 +248,10 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 Residual standard error: 0.8429 on 7898 degrees of freedom
 </pre>
+
 </details>
+
+<br/>
 
 ### Warming out with predictors
 
@@ -260,6 +264,7 @@ lm(average_rating ~ max_players, board_games) |>
 
 <details>
 <summary>Output</summary>
+
 <pre>
 Call:
 lm(formula = average_rating ~ max_players, data = board_games)
@@ -279,6 +284,7 @@ Residual standard error: 0.8426 on 7897 degrees of freedom
 Multiple R-squared:  0.000942,	Adjusted R-squared:  0.0008155 
 F-statistic: 7.446 on 1 and 7897 DF,  p-value: 0.006371
 </pre>
+
 </details>
 
 By exploring the distribution of maximum recommended players something similar to the maximum recommended play time arises, in that it is probably useful to convert it first to a logarithmic scale.
@@ -307,6 +313,7 @@ lm(average_rating ~ log2(max_players + 1), board_games) |>
 
 <details>
 <summary>Output</summary>
+
 <pre>
 Call:
 lm(formula = average_rating ~ log2(max_players + 1), data = board_games)
@@ -326,6 +333,7 @@ Residual standard error: 0.8326 on 7897 degrees of freedom
 Multiple R-squared:  0.02455,	Adjusted R-squared:  0.02442 
 F-statistic: 198.7 on 1 and 7897 DF,  p-value: < 2.2e-16
 </pre>
+
 </details>
 
 Taking max_playtime into account exposes that:
@@ -345,6 +353,7 @@ lm(average_rating ~
 
 <details>
 <summary>Output</summary>
+
 <pre>
 Call:
 lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
@@ -366,6 +375,7 @@ Residual standard error: 0.806 on 7896 degrees of freedom
 Multiple R-squared:  0.08587,	Adjusted R-squared:  0.08564 
 F-statistic: 370.9 on 2 and 7896 DF,  p-value: < 2.2e-16
 </pre>
+
 </details>
 
 By taking just these features into account the model outperforms the baseline but on their own can't explain the variation on the ratings, and this is exposed by looking at the R-squared: **the predictors explain only about ~9% of the variation of the ratings.** So, it is necessary to include more relevant predictors or a different combination of them.
@@ -386,6 +396,7 @@ lm(average_rating ~
 
 <details>
 <summary>Output</summary>
+
 <pre>
 Call:
 lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
@@ -408,6 +419,7 @@ Residual standard error: 0.7423 on 7895 degrees of freedom
 Multiple R-squared:  0.2248,	Adjusted R-squared:  0.2245 
 F-statistic:   763 on 3 and 7895 DF,  p-value: < 2.2e-16
 </pre>
+
 </details>
 
 By including the year in the model, the rating is expected to increase by 0.0264 and both the R-squared and the residual standard error had improved.
@@ -486,6 +498,7 @@ lasso_fit |>
 
 <details>
 <summary>Output</summary>
+
 <pre>
 # A tibble: 5,051 × 5
    term                   step estimate lambda dev.ratio
@@ -502,6 +515,7 @@ lasso_fit |>
 10 category_Wargame          5   0.0528  0.168    0.0538
 # ℹ 5,041 more rows
 </pre>
+
 </details>
 
 On its own, the model's output it's not that useful since it shows all the possible values of lambda taken. The challenge is to choose an optimal value of lambda that minimizes the model error. Cross-validation can be used instead to select the best lambda.
@@ -533,6 +547,7 @@ cv_lasso_fit$glmnet.fit |>
 
 <details>
 <summary>Output</summary>
+
 <pre>
 # A tibble: 62 × 5
    term                              step estimate lambda dev.ratio
@@ -549,11 +564,12 @@ cv_lasso_fit$glmnet.fit |>
 10 family_Combinatorial                30    0.265 0.0165     0.293
 # ℹ 52 more rows
 </pre>
+
 </details>
 
 ---
 
-## Model pipeline
+## Model Pipeline
 
 Since most of the steps when assessing models need to be applied to the testing and new data, operations like threshold setups, feature engineering, transformations, and others have to be specified more intuitively. Below is an implementation of the previous steps using the Tidymodels metapackage (recipes).
 

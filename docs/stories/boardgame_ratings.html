@@ -40,29 +40,7 @@ import "../_observablehq/client.js";
 <li class="observablehq-secondary-link"><a href="#data-understanding">Data Understanding</a></li>
 <li class="observablehq-secondary-link"><a href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
 <li class="observablehq-secondary-link"><a href="#model-building">Model Building</a></li>
-<li class="observablehq-secondary-link"><a href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.376076-0.009484-672.3-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept) 6.376076   0.009484   672.3   &lt;2e-16 ***</a></li>
-<li class="observablehq-secondary-link"><a href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.3841165-0.0099276-643.069-%3C-2e-16-***max_players--0.0014050-0.0005149--2.729-0.00637-**">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  6.3841165  0.0099276 643.069  &lt; 2e-16 ***
-max_players -0.0014050  0.0005149  -2.729  0.00637 **</a></li>
-<li class="observablehq-secondary-link"><a href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.81908-0.03279-207.9-%3C2e-16-***log2(max_players-%2B-1)--0.18280-0.01297--14.1-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)            6.81908    0.03279   207.9   &lt;2e-16 ***
-log2(max_players + 1) -0.18280    0.01297   -14.1   &lt;2e-16 ***</a></li>
-<li class="observablehq-secondary-link"><a href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.062075-0.045713-132.61-%3C2e-16-***log2(max_players-%2B-1)--0.161968-0.012587--12.87-%3C2e-16-***log2(max_playtime-%2B-1)-0.127952-0.005559-23.02-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)             6.062075   0.045713  132.61   &lt;2e-16 ***
-log2(max_players + 1)  -0.161968   0.012587  -12.87   &lt;2e-16 ***
-log2(max_playtime + 1)  0.127952   0.005559   23.02   &lt;2e-16 ***</a></li>
-<li class="observablehq-secondary-link"><a href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)--46.691830-1.403317--33.27-%3C2e-16-***log2(max_players-%2B-1)--0.198114-0.011632--17.03-%3C2e-16-***log2(max_playtime-%2B-1)-0.160830-0.005194-30.96-%3C2e-16-***year_published-0.026288-0.000699-37.61-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)            -46.691830   1.403317  -33.27   &lt;2e-16 ***
-log2(max_players + 1)   -0.198114   0.011632  -17.03   &lt;2e-16 ***
-log2(max_playtime + 1)   0.160830   0.005194   30.96   &lt;2e-16 ***
-year_published           0.026288   0.000699   37.61   &lt;2e-16 ***</a></li>
-<li class="observablehq-secondary-link"><a href="#model-pipeline">Model pipeline</a></li>
+<li class="observablehq-secondary-link"><a href="#model-pipeline">Model Pipeline</a></li>
 </ol>
 </nav>
 </aside>
@@ -253,16 +231,21 @@ game_folds <span class="hljs-operator">&lt;-</span> vfold_cv<span class="hljs-pu
 <summary>Output</summary>
 <pre>Call:
 lm(formula = average_rating ~ 1, data = board_games)
-<p>Residuals:
-Min      1Q  Median      3Q     Max
--4.9919 -0.5346  0.0207  0.5663  2.6278</p>
-<h2 id="coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.376076-0.009484-672.3-%3C2e-16-***" tabindex="-1"><a class="observablehq-header-anchor" href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.376076-0.009484-672.3-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)<br>
-(Intercept) 6.376076   0.009484   672.3   &lt;2e-16 ***</a></h2>
-<p>Signif. codes:  0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
-<p>Residual standard error: 0.8429 on 7898 degrees of freedom
-</p></pre><p></p>
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9919 -0.5346  0.0207  0.5663  2.6278 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 6.376076   0.009484   672.3   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8429 on 7898 degrees of freedom
+</pre>
 </details>
+<br>
 <h3 id="warming-out-with-predictors" tabindex="-1"><a class="observablehq-header-anchor" href="#warming-out-with-predictors">Warming out with predictors</a></h3>
 <p>Using max_players to explain the variation in ratings has almost no effect. The residual standard error is almost identical. But it does say that games with more players tend to get lower ratings by a minuscule amount: for every unit increment in the number of players, the rating drops by -0.0014.</p>
 <pre data-language="r"><code class="language-r">lm<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operator">~</span> max_players<span class="hljs-punctuation">,</span> board_games<span class="hljs-punctuation">)</span> <span class="hljs-operator">|&gt;</span>
@@ -272,18 +255,22 @@ Estimate Std. Error t value Pr(&gt;|t|)<br>
 <summary>Output</summary>
 <pre>Call:
 lm(formula = average_rating ~ max_players, data = board_games)
-<p>Residuals:
-Min      1Q  Median      3Q     Max
--4.9887 -0.5356  0.0212  0.5652  2.6282</p>
-<h2 id="coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.3841165-0.0099276-643.069-%3C-2e-16-***max_players--0.0014050-0.0005149--2.729-0.00637-**" tabindex="-1"><a class="observablehq-header-anchor" href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.3841165-0.0099276-643.069-%3C-2e-16-***max_players--0.0014050-0.0005149--2.729-0.00637-**">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)<br>
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9887 -0.5356  0.0212  0.5652  2.6282 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept)  6.3841165  0.0099276 643.069  &lt; 2e-16 ***
-max_players -0.0014050  0.0005149  -2.729  0.00637 **</a></h2>
-<p>Signif. codes:  0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
-<p>Residual standard error: 0.8426 on 7897 degrees of freedom
-Multiple R-squared:  0.000942,	Adjusted R-squared:  0.0008155
+max_players -0.0014050  0.0005149  -2.729  0.00637 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8426 on 7897 degrees of freedom
+Multiple R-squared:  0.000942,	Adjusted R-squared:  0.0008155 
 F-statistic: 7.446 on 1 and 7897 DF,  p-value: 0.006371
-</p></pre><p></p>
+</pre>
 </details>
 <p>By exploring the distribution of maximum recommended players something similar to the maximum recommended play time arises, in that it is probably useful to convert it first to a logarithmic scale.</p>
 <pre data-language="r"><code class="language-r">board_games <span class="hljs-operator">|&gt;</span>
@@ -306,18 +293,22 @@ lm<span class="hljs-punctuation">(</span>average_rating <span class="hljs-operat
 <summary>Output</summary>
 <pre>Call:
 lm(formula = average_rating ~ log2(max_players + 1), data = board_games)
-<p>Residuals:
-Min      1Q  Median      3Q     Max
--4.8554 -0.5293  0.0206  0.5644  2.6980</p>
-<h2 id="coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.81908-0.03279-207.9-%3C2e-16-***log2(max_players-%2B-1)--0.18280-0.01297--14.1-%3C2e-16-***" tabindex="-1"><a class="observablehq-header-anchor" href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.81908-0.03279-207.9-%3C2e-16-***log2(max_players-%2B-1)--0.18280-0.01297--14.1-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)<br>
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8554 -0.5293  0.0206  0.5644  2.6980 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept)            6.81908    0.03279   207.9   &lt;2e-16 ***
-log2(max_players + 1) -0.18280    0.01297   -14.1   &lt;2e-16 ***</a></h2>
-<p>Signif. codes:  0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
-<p>Residual standard error: 0.8326 on 7897 degrees of freedom
-Multiple R-squared:  0.02455,	Adjusted R-squared:  0.02442
+log2(max_players + 1) -0.18280    0.01297   -14.1   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8326 on 7897 degrees of freedom
+Multiple R-squared:  0.02455,	Adjusted R-squared:  0.02442 
 F-statistic: 198.7 on 1 and 7897 DF,  p-value: &lt; 2.2e-16
-</p></pre><p></p>
+</pre>
 </details>
 <p>Taking max_playtime into account exposes that:</p>
 <ul>
@@ -339,19 +330,23 @@ F-statistic: 198.7 on 1 and 7897 DF,  p-value: &lt; 2.2e-16
 <pre>Call:
 lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
     1), data = board_games)
-<p>Residuals:
-Min      1Q  Median      3Q     Max
--4.9233 -0.5041  0.0314  0.5326  2.8203</p>
-<h2 id="coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.062075-0.045713-132.61-%3C2e-16-***log2(max_players-%2B-1)--0.161968-0.012587--12.87-%3C2e-16-***log2(max_playtime-%2B-1)-0.127952-0.005559-23.02-%3C2e-16-***" tabindex="-1"><a class="observablehq-header-anchor" href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)-6.062075-0.045713-132.61-%3C2e-16-***log2(max_players-%2B-1)--0.161968-0.012587--12.87-%3C2e-16-***log2(max_playtime-%2B-1)-0.127952-0.005559-23.02-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)<br>
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9233 -0.5041  0.0314  0.5326  2.8203 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept)             6.062075   0.045713  132.61   &lt;2e-16 ***
 log2(max_players + 1)  -0.161968   0.012587  -12.87   &lt;2e-16 ***
-log2(max_playtime + 1)  0.127952   0.005559   23.02   &lt;2e-16 ***</a></h2>
-<p>Signif. codes:  0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
-<p>Residual standard error: 0.806 on 7896 degrees of freedom
-Multiple R-squared:  0.08587,	Adjusted R-squared:  0.08564
+log2(max_playtime + 1)  0.127952   0.005559   23.02   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.806 on 7896 degrees of freedom
+Multiple R-squared:  0.08587,	Adjusted R-squared:  0.08564 
 F-statistic: 370.9 on 2 and 7896 DF,  p-value: &lt; 2.2e-16
-</p></pre><p></p>
+</pre>
 </details>
 <p>By taking just these features into account the model outperforms the baseline but on their own can't explain the variation on the ratings, and this is exposed by looking at the R-squared: <strong>the predictors explain only about ~9% of the variation of the ratings.</strong> So, it is necessary to include more relevant predictors or a different combination of them.</p>
 <h3 id="exploring-other-variables" tabindex="-1"><a class="observablehq-header-anchor" href="#exploring-other-variables">Exploring other variables</a></h3>
@@ -374,20 +369,24 @@ F-statistic: 370.9 on 2 and 7896 DF,  p-value: &lt; 2.2e-16
 <pre>Call:
 lm(formula = average_rating ~ log2(max_players + 1) + log2(max_playtime + 
     1) + year_published, data = board_games)
-<p>Residuals:
-Min      1Q  Median      3Q     Max
--4.9832 -0.4455  0.0215  0.4801  2.7404</p>
-<h2 id="coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)--46.691830-1.403317--33.27-%3C2e-16-***log2(max_players-%2B-1)--0.198114-0.011632--17.03-%3C2e-16-***log2(max_playtime-%2B-1)-0.160830-0.005194-30.96-%3C2e-16-***year_published-0.026288-0.000699-37.61-%3C2e-16-***" tabindex="-1"><a class="observablehq-header-anchor" href="#coefficients%3Aestimate-std.-error-t-value-pr(%3E%7Ct%7C)(intercept)--46.691830-1.403317--33.27-%3C2e-16-***log2(max_players-%2B-1)--0.198114-0.011632--17.03-%3C2e-16-***log2(max_playtime-%2B-1)-0.160830-0.005194-30.96-%3C2e-16-***year_published-0.026288-0.000699-37.61-%3C2e-16-***">Coefficients:
-Estimate Std. Error t value Pr(&gt;|t|)<br>
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9832 -0.4455  0.0215  0.4801  2.7404 
+
+Coefficients:
+                         Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept)            -46.691830   1.403317  -33.27   &lt;2e-16 ***
 log2(max_players + 1)   -0.198114   0.011632  -17.03   &lt;2e-16 ***
 log2(max_playtime + 1)   0.160830   0.005194   30.96   &lt;2e-16 ***
-year_published           0.026288   0.000699   37.61   &lt;2e-16 ***</a></h2>
-<p>Signif. codes:  0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
-<p>Residual standard error: 0.7423 on 7895 degrees of freedom
-Multiple R-squared:  0.2248,	Adjusted R-squared:  0.2245
+year_published           0.026288   0.000699   37.61   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7423 on 7895 degrees of freedom
+Multiple R-squared:  0.2248,	Adjusted R-squared:  0.2245 
 F-statistic:   763 on 3 and 7895 DF,  p-value: &lt; 2.2e-16
-</p></pre><p></p>
+</pre>
 </details>
 <p>By including the year in the model, the rating is expected to increase by 0.0264 and both the R-squared and the residual standard error had improved.</p>
 <p>Now, it's impossible to launch a game previous to the current year, but it's important to control for it, not because a new game with the same categories as one in let's say 1950 will score the same since the popularity of that category could have increased over the years, and it has in general.</p>
@@ -499,7 +498,7 @@ cv_lasso_fit<span class="hljs-operator">$</span>glmnet.fit <span class="hljs-ope
 </dbl></dbl></dbl></dbl></chr></pre>
 </details>
 <hr>
-<h2 id="model-pipeline" tabindex="-1"><a class="observablehq-header-anchor" href="#model-pipeline">Model pipeline</a></h2>
+<h2 id="model-pipeline" tabindex="-1"><a class="observablehq-header-anchor" href="#model-pipeline">Model Pipeline</a></h2>
 <p>Since most of the steps when assessing models need to be applied to the testing and new data, operations like threshold setups, feature engineering, transformations, and others have to be specified more intuitively. Below is an implementation of the previous steps using the Tidymodels metapackage (recipes).</p>
 <pre data-language="r"><code class="language-r">library<span class="hljs-punctuation">(</span>textrecipes<span class="hljs-punctuation">)</span>
 
