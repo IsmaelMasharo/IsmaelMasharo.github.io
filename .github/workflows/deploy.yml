@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master, gh-actions-deploy
+      - gh-actions-deploy
 
 permissions:
   contents: read
