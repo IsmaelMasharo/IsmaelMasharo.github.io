@@ -1,6 +1,8 @@
 ---
 title: US College Majors
 toc: false
+sidebar: false
+style: ../custom-style.css
 ---
 
 ```html

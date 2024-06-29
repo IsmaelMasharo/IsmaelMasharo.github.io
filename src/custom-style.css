@@ -1,0 +1,46 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-near-midnight.css");
+
+/* STYLES TO:
+- CENTER CONTENT, INCLUDING FOOTER
+- MAKING A BETTER FOOTER
+- UPDATE MAXWIDTH */
+
+:root {
+    --content-max-width: 700px;
+}
+
+#observablehq-center {
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#observablehq-footer {
+    margin: auto 0 1rem;
+    /* max-width: 640px; tiene que estar para que funcione*/
+    width: 100%;
+}
+
+#observablehq-main,
+#observablehq-header,
+#observablehq-footer,
+#observablehq-footer nav {
+    max-width: var(--content-max-width);
+}
+
+p,
+table,
+figure,
+figcaption,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.katex-display {
+    max-width: var(--content-max-width);
+}
