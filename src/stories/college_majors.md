@@ -4,7 +4,7 @@ toc: false
 ---
 
 <h1 style="margin-bottom: .2em">
-  Popular majors in US were not near the highest paid ones
+  Popular majors in the US were not near the highest paid ones
 </h1>
 <p>
   Despite having the highest number of graduates,
