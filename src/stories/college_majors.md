@@ -1,79 +1,54 @@
 ---
 title: US College Majors
 toc: false
-sidebar: false
-style: ../custom-style.css
 ---
 
-```html
-<!-- <main style="display: flex; justify-content: center"> -->
-<article>
-  <h1 style="font-size: 2em">US College Majors</h1>
-  <p>
-    The analysis is part of the TidyTuesday series. Details about the data
-    <a
-      href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16"
-      >here</a
-    >.
-  </p>
-  <hr />
-  <h2 style="margin-bottom: .2em">
-    Popular majors were not near the highest paid ones
-  </h2>
-  <p>
-    Despite having the highest number of graduates,
-    <span class="psychology">Psychology</span> reported earnings 3.5 times less
-    than <span class="petroleum">Petroleum Engineering</span>, the highest paid
-    career.
-  </p>
-  <p>
-    Bellow, each line corresponds to a major, conecting the number of graduates
-    and median salaries.
-  </p>
-  ${plot}
-</article>
-```
+<h1 style="margin-bottom: .2em">
+  Popular majors in US were not near the highest paid ones
+</h1>
+<p>
+  Despite having the highest number of graduates,
+  <span class="psychology">Psychology</span> reported earnings 3.5 times less
+  than <span class="petroleum">Petroleum Engineering</span>, the highest paid
+  career.
+</p>
+
+*Lines represent majors, connecting total graduates and median salaries.*
 
 ```html
-<!-- <div">
-  <span class="petroleum">Petroleum Engineering</span>
-  <span class="psychology">Psychology</span>
-</div> -->
 <style>
   .petroleum {
     font-weight: bold;
-    border-bottom: solid 2px ${colorScale.apply('Petroleum Engineering')}
+    border-bottom: solid 2px ${petroleum}
   }
   .psychology {
     font-weight: bold;
-    border-bottom: solid 2px ${colorScale.apply('Psychology')}
+    border-bottom: solid 2px ${psychology}
   }
 </style>
 ```
 
 ```js
-const colorScale = plot.scale("color")
+import { Observable10 } from '../utils/constants.js'
+const petroleum = Observable10[0]
+const psychology = Observable10[1]
 ```
 
 ```js
-// MEDIAN SALARIES OF MAJORS OF INTEREST
-// top2
-//   .select(["major", "dimension", "value"])
-//   .filter((d) => d.dimension == "Median Salary")
-//   .view()
-```
-
-```js
-const plot = Plot.plot({
-  // subtitle: 'Each line corresponds to a major, conecting number of graduates and median salary.',
-  caption:
-    "Source: American Community Survey 2010-2012 Public Use Microdata Series",
+Plot.plot({
+  caption: html`Source: American Community Survey 2010-2012 Public Use Microdata Series. Curated by the social data project
+  <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16"
+      >#Tidytuesday</a>.`,
   insetRight: 10,
   height: 250,
   marginLeft: 5,
   marginRight: 20,
   x: { axis: null },
   y: { padding: 0 },
+  color: {
+    domain: ["Psychology", "Petroleum Engineering"],
+    range: [psychology, petroleum]
+  },
   marks: [
     Plot.axisY({
       label: null,

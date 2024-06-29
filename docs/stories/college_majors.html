@@ -4,14 +4,15 @@
 <title>US College Majors | Ismael Vargas</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="../_import/custom-style.c33d2d2f.css">
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.css">
 <link rel="preload" as="style" href="../_observablehq/stdlib/inputs.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="../_import/custom-style.c33d2d2f.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.css">
 <link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.css">
 <link rel="modulepreload" href="../_observablehq/client.js">
 <link rel="modulepreload" href="../_observablehq/runtime.js">
 <link rel="modulepreload" href="../_observablehq/stdlib.js">
+<link rel="modulepreload" href="../_import/utils/constants.e116e703.js">
 <link rel="modulepreload" href="../_import/utils/arquero.db8408e4.js">
 <link rel="modulepreload" href="../_import/utils/strings.a240ab0e.js">
 <link rel="modulepreload" href="../_npm/arquero@5.4.0/_esm.js">
@@ -67,80 +68,44 @@ import {registerFile} from "../_observablehq/stdlib.js";
 
 registerFile("../data/538-college-mayor-economic-guide.csv", {"name":"../data/538-college-mayor-economic-guide.csv","mimeType":"text/csv","path":"../_file/data/538-college-mayor-economic-guide.0c961b79.csv","lastModified":1718163676886});
 
-define({id: "51d36693", inputs: ["html","plot","display"], body: async (html,plot,display) => {
+define({id: "27a9eed2", inputs: ["html","petroleum","psychology","display"], body: async (html,petroleum,psychology,display) => {
 display(await(
-html.fragment`<!-- <main style="display: flex; justify-content: center"> -->
-<article>
-  <h1 style="font-size: 2em">US College Majors</h1>
-  <p>
-    The analysis is part of the TidyTuesday series. Details about the data
-    <a
-      href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16"
-      >here</a
-    >.
-  </p>
-  <hr />
-  <h2 style="margin-bottom: .2em">
-    Popular majors were not near the highest paid ones
-  </h2>
-  <p>
-    Despite having the highest number of graduates,
-    <span class="psychology">Psychology</span> reported earnings 3.5 times less
-    than <span class="petroleum">Petroleum Engineering</span>, the highest paid
-    career.
-  </p>
-  <p>
-    Bellow, each line corresponds to a major, conecting the number of graduates
-    and median salaries.
-  </p>
-  ${plot}
-</article>`
-))
-}});
-
-define({id: "6b6f7c92", inputs: ["html","colorScale","display"], body: async (html,colorScale,display) => {
-display(await(
-html.fragment`<!-- <div">
-  <span class="petroleum">Petroleum Engineering</span>
-  <span class="psychology">Psychology</span>
-</div> -->
-<style>
+html.fragment`<style>
   .petroleum {
     font-weight: bold;
-    border-bottom: solid 2px ${colorScale.apply('Petroleum Engineering')}
+    border-bottom: solid 2px ${petroleum}
   }
   .psychology {
     font-weight: bold;
-    border-bottom: solid 2px ${colorScale.apply('Psychology')}
+    border-bottom: solid 2px ${psychology}
   }
 </style>`
 ))
 }});
 
-define({id: "fadd1cfc", inputs: ["plot"], outputs: ["colorScale"], body: (plot) => {
-const colorScale = plot.scale("color")
-return {colorScale};
+define({id: "1db74a7c", outputs: ["Observable10","petroleum","psychology"], body: async () => {
+const {Observable10} = await import("../_import/utils/constants.e116e703.js");
+const petroleum = Observable10[0]
+const psychology = Observable10[1]
+return {Observable10,petroleum,psychology};
 }});
 
-define({id: "99a71026", body: () => {
-// MEDIAN SALARIES OF MAJORS OF INTEREST
-// top2
-//   .select(["major", "dimension", "value"])
-//   .filter((d) => d.dimension == "Median Salary")
-//   .view()
-}});
-
-define({id: "4fe0af16", inputs: ["Plot","cols","dtFold","scls","top2","colTicks"], outputs: ["plot"], body: (Plot,cols,dtFold,scls,top2,colTicks) => {
-const plot = Plot.plot({
-  // subtitle: 'Each line corresponds to a major, conecting number of graduates and median salary.',
-  caption:
-    "Source: American Community Survey 2010-2012 Public Use Microdata Series",
+define({id: "28c51cad", inputs: ["Plot","html","psychology","petroleum","cols","dtFold","scls","top2","colTicks","display"], body: async (Plot,html,psychology,petroleum,cols,dtFold,scls,top2,colTicks,display) => {
+display(await(
+Plot.plot({
+  caption: html`Source: American Community Survey 2010-2012 Public Use Microdata Series. Curated by the social data project
+  <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16"
+      >#Tidytuesday</a>.`,
   insetRight: 10,
   height: 250,
   marginLeft: 5,
   marginRight: 20,
   x: { axis: null },
   y: { padding: 0 },
+  color: {
+    domain: ["Psychology", "Petroleum Engineering"],
+    range: [psychology, petroleum]
+  },
   marks: [
     Plot.axisY({
       label: null,
@@ -176,7 +141,7 @@ const plot = Plot.plot({
     }),
   ],
 })
-return {plot};
+))
 }});
 
 define({id: "f0b11b91", outputs: ["aq","op","renameLower","toTitleCase"], body: async () => {
@@ -266,13 +231,38 @@ return {scls,colTicks};
 }});
 
 </script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Ismael Vargas</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Posts</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./college_majors">US College Majors</a></li>
+    <li class="observablehq-link"><a href="./spotify_history">My Spotify Dashboard</a></li>
+    <li class="observablehq-link"><a href="./boardgame_ratings">Predicting Board Game Ratings</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:51d36693:--></div>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:6b6f7c92:--></div>
-<div class="observablehq observablehq--block"><!--:fadd1cfc:--></div>
-<div class="observablehq observablehq--block"><!--:99a71026:--></div>
-<div class="observablehq observablehq--block"><!--:4fe0af16:--></div>
+<h1 style="margin-bottom: .2em">
+  Popular majors in US were not near the highest paid ones
+</h1>
+<p>
+  Despite having the highest number of graduates,
+  <span class="psychology">Psychology</span> reported earnings 3.5 times less
+  than <span class="petroleum">Petroleum Engineering</span>, the highest paid
+  career.
+</p>
+<p><em>Lines represent majors, connecting total graduates and median salaries.</em></p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:27a9eed2:--></div>
+<div class="observablehq observablehq--block"><!--:1db74a7c:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:28c51cad:--></div>
 <!-- HELPERS -->
 <div class="observablehq observablehq--block"><!--:f0b11b91:--></div>
 <div class="observablehq observablehq--block"><!--:a3fe70fa:--></div>
