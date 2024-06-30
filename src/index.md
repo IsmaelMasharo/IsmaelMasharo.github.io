@@ -213,7 +213,7 @@ const jobExp = [
     sector: "Education, eLearning",
     jobTitle: "Data Scientist",
     shortDescription:
-      "Mixing Data, Web, and Business knowledge, developing new abilities while traveling around Latam.",
+      "A mix of Data, Web, and Business knowledge, developing new abilities while traveling around Latam.",
   },
   {
     start: "Apr 2021",
@@ -229,7 +229,7 @@ const jobExp = [
     end: "Mar 2021",
     at: "La Posititiva Seguros",
     sector: "Insurance",
-    jobTitle: "Beckend Engineer",
+    jobTitle: "Backend Engineer",
     shortDescription:
       "Explored new solutions as part of the Digital Transformation Lab team to improve user experience.",
   },
