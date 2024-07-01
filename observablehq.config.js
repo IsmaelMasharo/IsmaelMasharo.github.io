@@ -15,6 +15,7 @@ export default {
         {name: "US College Majors", path: "/stories/college_majors"},
         {name: "My Spotify Dashboard", path: "/stories/spotify_history"},
         {name: "Predicting Board Game Ratings", path: "/stories/boardgame_ratings"},
+        {name: "Peru Population Map", path: "/stories/peru_census_2017"},
       ]
     },
   ],
