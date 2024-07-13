@@ -64,14 +64,15 @@ import { csvParse, utcParse } from "npm:d3"
 
 ```html
 <div class="hero">
-  <h1>I'm Ismael<br>Data&nbsp;Explorer</h1>
+  <h1>Hi, I'm Ismael</h1>
   <h2>
-    I think about
-    <span style="border-bottom: solid 2px #4269d0;">data</span> and use
-    <span style="border-bottom: solid 2px #efb118;">code</span> to reshape its
-    complexity into practical knowledge and
-    <span style="border-bottom: solid 2px #ff725c;">visual</span>
-    representations.
+    I focus on
+    <span style="border-bottom: solid 2px #efb118;">front-end development</span>
+    and
+    <span style="border-bottom: solid 2px #4269d0;">data visualization</span>,
+    creating
+    <span style="border-bottom: solid 2px #ff725c;">visual</span> solutions
+    through code.
   </h2>
 </div>
 ```
@@ -106,7 +107,7 @@ import { csvParse, utcParse } from "npm:d3"
 
 <div style="font-family: sans-serif; margin-top: 4rem;">
   <p>
-  These are some of my previous data related proyects living outside of this page 👇.
+  These are some of my previous data related projects living outside of this page 👇.
   </p>
   <br>
 </div>
@@ -211,9 +212,8 @@ const jobExp = [
     end: "Jun 2024",
     at: "Freelance",
     sector: "Education, eLearning",
-    jobTitle: "Data Scientist",
-    shortDescription:
-      "A mix of Data, Web, and Business knowledge, developing new abilities while traveling around Latam.",
+    jobTitle: "Web Freelance",
+    shortDescription: "Building frontend and data solutions while traveling around Latam.",
   },
   {
     start: "Apr 2021",
@@ -270,39 +270,38 @@ const tools = csvParse(
   `category,tool,order
 Data,Ggplot,1
 Developer,React,2
-Developer,Python,2
+Developer,Tailwind,2
 Data,R,1
-Data,PostgreSQL,1
 Developer,D3,1
 Analytics,Statistics,5
 Design,Figma,3
 Data,Observable Plot,1
+Developer,Javascript,2
 Data,Seaborn,1
+Developer,HTML,2
+Developer,Vue,2
+Developer,CSS,1
+Developer,Docker,2
 Data,Dyplr,1
 Data,Vega-Lite,1
 Design,Storytelling,4
-Data,DBT,1
 Analytics,Data Science,5
-Data,Excel,1
 Developer,GIT,2
 Data,Jupyter,1
-Analytics,A/B Testing,1
+Developer,Python,2
 Data,SQL,1
 Developer,AWS,2
 Design,UX,3
-Data,RStudio,1
+Developer,Redux,2
 Data,Streamlit,1
 Analytics,Research,5
 Data,PowerBI,1
 Developer,Django,2
-Developer,Javascript,2
+Developer,Svelte,2
+Analytics,A/B Testing,1
 Data,Pandas,1
-Developer,Tailwind,2
 Analytics,Machine Learning,5
 Design,SCRUM,3
-Developer,HTML,2
-Data,Scypy,1
-Developer,CSS,1
 `
 )
 ```
@@ -333,8 +332,8 @@ const jobsPlot = (width) =>
         x2: "end",
         y: "jobTitle",
         sort: { y: "-x1" },
-        fill: 'at',
-        rx: 4
+        fill: "at",
+        rx: 4,
       }),
       Plot.text(jobExpD, {
         x: "start",
@@ -342,7 +341,7 @@ const jobsPlot = (width) =>
         text: "jobTitle",
         textAnchor: "end",
         dx: -3,
-        fontSize: 10.5
+        fontSize: 10.5,
       }),
       Plot.tip(
         jobExpD,
@@ -353,7 +352,7 @@ const jobsPlot = (width) =>
           sort: { y: "-x1" },
           title: (d) => `${d.at}\n\n${d.shortDescription}`,
           fontSize: 14,
-          lineHeight: 1.2
+          lineHeight: 1.2,
         })
       ),
     ],
