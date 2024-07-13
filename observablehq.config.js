@@ -10,7 +10,6 @@ export default {
     {
       name: "Posts",
       open: true,
-      // path: "/stories/",
       pages: [
         {name: "US College Majors", path: "/stories/college_majors"},
         {name: "My Spotify Dashboard", path: "/stories/spotify_history"},
