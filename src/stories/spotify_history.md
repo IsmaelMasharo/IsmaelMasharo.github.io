@@ -5,10 +5,14 @@ theme: [dark, wide]
 ---
 
 ```js
-import aq, { op, renameLower } from "../utils/arquero.js"
+// import aq, { op, renameLower } from "../utils/arquero.js"
 import { TopLevel } from "../components/topLevelPlot.js";
 import { Trend } from "../components/trend.js";
 import { utcFormat } from "npm:d3"
+```
+
+```js
+const op = aq.op
 ```
 
 ```js

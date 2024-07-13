@@ -5,24 +5,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="../_observablehq/theme-near-midnight,wide.css">
-<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight,wide.css">
-<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.css">
 <link rel="modulepreload" href="../_observablehq/client.js">
 <link rel="modulepreload" href="../_observablehq/runtime.js">
 <link rel="modulepreload" href="../_observablehq/stdlib.js">
-<link rel="modulepreload" href="../_import/utils/arquero.db8408e4.js">
 <link rel="modulepreload" href="../_import/components/topLevelPlot.96e170f0.js">
 <link rel="modulepreload" href="../_import/components/trend.d1515ee2.js">
 <link rel="modulepreload" href="../_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="../_npm/arquero@5.4.0/_esm.js">
-<link rel="modulepreload" href="../_observablehq/stdlib/inputs.js">
 <link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.15/_esm.js">
 <link rel="modulepreload" href="../_npm/htl@0.3.1/_esm.js">
 <link rel="modulepreload" href="../_npm/apache-arrow@16.1.0/_esm.js">
 <link rel="modulepreload" href="../_npm/parquet-wasm@0.6.1/_esm.js">
-<link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="../_npm/arquero@5.4.0/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-array@3.2.4/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-axis@3.0.0/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-brush@3.0.0/_esm.js">
@@ -53,10 +48,11 @@
 <link rel="modulepreload" href="../_npm/d3-timer@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-transition@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/_esm.js">
-<link rel="modulepreload" href="../_npm/acorn@8.12.0/_esm.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
 <link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/_esm.js">
 <link rel="modulepreload" href="../_npm/tslib@2.6.3/_esm.js">
 <link rel="modulepreload" href="../_npm/flatbuffers@24.3.25/_esm.js">
+<link rel="modulepreload" href="../_npm/acorn@8.12.0/_esm.js">
 <link rel="modulepreload" href="../_npm/internmap@2.0.3/_esm.js">
 <link rel="modulepreload" href="../_npm/delaunator@5.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/_esm.js">
@@ -69,10 +65,16 @@ import {registerFile} from "../_observablehq/stdlib.js";
 
 registerFile("../data/spotify-2023.parquet", {"name":"../data/spotify-2023.parquet","path":"../_file/data/spotify-2023.fb1f3f43.parquet","lastModified":1719678048757});
 
-define({id: "db026b08", outputs: ["aq","op","renameLower","TopLevel","Trend","utcFormat"], body: async () => {
-const [{default: aq, op, renameLower}, {TopLevel}, {Trend}, {utcFormat}] = await Promise.all([import("../_import/utils/arquero.db8408e4.js"), import("../_import/components/topLevelPlot.96e170f0.js"), import("../_import/components/trend.d1515ee2.js"), import("../_npm/d3@7.9.0/_esm.js")]);
+define({id: "fe47f292", outputs: ["TopLevel","Trend","utcFormat"], body: async () => {
+const [{TopLevel}, {Trend}, {utcFormat}] = await Promise.all([import("../_import/components/topLevelPlot.96e170f0.js"), import("../_import/components/trend.d1515ee2.js"), import("../_npm/d3@7.9.0/_esm.js")]);
+// import aq, { op, renameLower } from "../utils/arquero.js"
 
-return {aq,op,renameLower,TopLevel,Trend,utcFormat};
+return {TopLevel,Trend,utcFormat};
+}});
+
+define({id: "b2ca7477", inputs: ["aq"], outputs: ["op"], body: (aq) => {
+const op = aq.op
+return {op};
 }});
 
 define({id: "28151d1a", inputs: ["FileAttachment"], outputs: ["data"], body: (FileAttachment) => {
@@ -256,7 +258,8 @@ return {tmFormat,lnplot};
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:db026b08:--></div>
+<div class="observablehq observablehq--block"><!--:fe47f292:--></div>
+<div class="observablehq observablehq--block"><!--:b2ca7477:--></div>
 <div class="observablehq observablehq--block"><!--:28151d1a:--></div>
 <div class="observablehq observablehq--block"><!--:6b2860f9:--></div>
 <div class="observablehq observablehq--block"><!--:9bb07466:--></div>

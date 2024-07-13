@@ -5,22 +5,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="../_observablehq/theme-near-midnight.css">
-<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.css">
-<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.css">
 <link rel="modulepreload" href="../_observablehq/client.js">
 <link rel="modulepreload" href="../_observablehq/runtime.js">
 <link rel="modulepreload" href="../_observablehq/stdlib.js">
-<link rel="modulepreload" href="../_import/utils/arquero.db8408e4.js">
 <link rel="modulepreload" href="../_import/utils/constants.e116e703.js">
-<link rel="modulepreload" href="../_npm/arquero@5.4.0/_esm.js">
-<link rel="modulepreload" href="../_observablehq/stdlib/inputs.js">
 <link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/arquero@5.4.0/_esm.js">
 <link rel="modulepreload" href="../_npm/d3@7.9.0/_esm.js">
 <link rel="modulepreload" href="../_npm/htl@0.3.1/_esm.js">
 <link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.15/_esm.js">
-<link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
 <link rel="modulepreload" href="../_npm/apache-arrow@16.1.0/_esm.js">
 <link rel="modulepreload" href="../_npm/acorn@8.12.0/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-array@3.2.4/_esm.js">
@@ -52,6 +47,7 @@
 <link rel="modulepreload" href="../_npm/d3-timer@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-transition@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
 <link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/_esm.js">
 <link rel="modulepreload" href="../_npm/tslib@2.6.3/_esm.js">
 <link rel="modulepreload" href="../_npm/flatbuffers@24.3.25/_esm.js">
@@ -139,10 +135,11 @@ Plot.plot({
 ))
 }});
 
-define({id: "5a000ac0", outputs: ["aq","op","Observable10"], body: async () => {
-const [{default: aq, op}, {Observable10}] = await Promise.all([import("../_import/utils/arquero.db8408e4.js"), import("../_import/utils/constants.e116e703.js")]);
+define({id: "5d6e4623", outputs: ["Observable10"], body: async () => {
+const {Observable10} = await import("../_import/utils/constants.e116e703.js");
+// import aq, { op } from "../utils/arquero.js"
 
-return {aq,op,Observable10};
+return {Observable10};
 }});
 
 define({id: "874d0540", inputs: ["FileAttachment","Observable10"], outputs: ["data","cols","topMajors","topMColors"], body: (FileAttachment,Observable10) => {
@@ -160,11 +157,11 @@ const top = dtFold.filter(aq.escape((d) => topMajors.includes(d.major)))
 return {dt,dtFold,top};
 }});
 
-define({id: "a91dab1b", inputs: ["cols","d3","aq","dt","op"], outputs: ["scls","colTicks"], body: (cols,d3,aq,dt,op) => {
+define({id: "ae065cfe", inputs: ["cols","d3","aq","dt"], outputs: ["scls","colTicks"], body: (cols,d3,aq,dt) => {
 const scls = new Map(
   cols.map((dimension) => [
     dimension,
-    d3.scaleLinear().domain([0, aq.agg(dt, op.max(dimension))]),
+    d3.scaleLinear().domain([0, aq.agg(dt, aq.op.max(dimension))]),
   ])
 )
 
@@ -207,10 +204,10 @@ career.</p>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:6117cb55:--></div>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d9d1c7f0:--></div>
 <!-- HELPERS -->
-<div class="observablehq observablehq--block"><!--:5a000ac0:--></div>
+<div class="observablehq observablehq--block"><!--:5d6e4623:--></div>
 <div class="observablehq observablehq--block"><!--:874d0540:--></div>
 <div class="observablehq observablehq--block"><!--:9491bae9:--></div>
-<div class="observablehq observablehq--block"><!--:a91dab1b:--></div>
+<div class="observablehq observablehq--block"><!--:ae065cfe:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="../"><span>Ismael Vargas</span></a><a rel="next" href="./spotify_history"><span>My Spotify Dashboard</span></a></nav>

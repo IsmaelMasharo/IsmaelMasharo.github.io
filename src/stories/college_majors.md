@@ -83,7 +83,7 @@ Plot.plot({
 <!-- HELPERS -->
 
 ```js
-import aq, { op } from "../utils/arquero.js"
+// import aq, { op } from "../utils/arquero.js"
 import { Observable10 } from "../utils/constants.js"
 ```
 
@@ -104,7 +104,7 @@ const top = dtFold.filter(aq.escape((d) => topMajors.includes(d.major)))
 const scls = new Map(
   cols.map((dimension) => [
     dimension,
-    d3.scaleLinear().domain([0, aq.agg(dt, op.max(dimension))]),
+    d3.scaleLinear().domain([0, aq.agg(dt, aq.op.max(dimension))]),
   ])
 )
 
