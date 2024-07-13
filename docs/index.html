@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Ismael Vargas</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-near-midnight.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-near-midnight.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_import/components/tools.ab6249bf.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="./_import/utils/constants.e116e703.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="icon" href="./_file/assets/ismael-favicon.0c0e520b.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+import {registerFile} from "./_observablehq/stdlib.js";
+
+registerFile("./assets/thumbnails/cohort-tables.png", {"name":"./assets/thumbnails/cohort-tables.png","mimeType":"image/png","path":"./_file/assets/thumbnails/cohort-tables.8e171b13.png","lastModified":1719678048717});
+registerFile("./assets/thumbnails/elecciones-internas.png", {"name":"./assets/thumbnails/elecciones-internas.png","mimeType":"image/png","path":"./_file/assets/thumbnails/elecciones-internas.b75f1332.png","lastModified":1719678048720});
+registerFile("./assets/thumbnails/flower-classifier.png", {"name":"./assets/thumbnails/flower-classifier.png","mimeType":"image/png","path":"./_file/assets/thumbnails/flower-classifier.b5ce7ba7.png","lastModified":1719678048722});
+registerFile("./assets/thumbnails/job-satisfaction.png", {"name":"./assets/thumbnails/job-satisfaction.png","mimeType":"image/png","path":"./_file/assets/thumbnails/job-satisfaction.9e0a6882.png","lastModified":1719678048724});
+registerFile("./assets/thumbnails/kmeans-elbow.png", {"name":"./assets/thumbnails/kmeans-elbow.png","mimeType":"image/png","path":"./_file/assets/thumbnails/kmeans-elbow.b4cc188c.png","lastModified":1719678048726});
+registerFile("./assets/thumbnails/wage-gap.png", {"name":"./assets/thumbnails/wage-gap.png","mimeType":"image/png","path":"./_file/assets/thumbnails/wage-gap.d6f6c950.png","lastModified":1719678048729});
+
+define({id: "8fa9dd62", outputs: ["longList","csvParse","utcParse"], body: async () => {
+const [{longList}, {csvParse, utcParse}] = await Promise.all([import("./_import/components/tools.ab6249bf.js"), import("./_npm/d3@7.9.0/_esm.js")]);
+
+return {longList,csvParse,utcParse};
+}});
+
+define({id: "8a9fab2b", inputs: ["html","display"], body: async (html,display) => {
+display(await(
+html.fragment`<div class="hero">
+  <h1>Hi, I'm Ismael</h1>
+  <h2>
+    I focus on
+    <span style="border-bottom: solid 2px #efb118;">front-end development</span>
+    and
+    <span style="border-bottom: solid 2px #4269d0;">data visualization</span>,
+    creating
+    <span style="border-bottom: solid 2px #ff725c;">visual</span> solutions
+    through code.
+  </h2>
+</div>`
+))
+}});
+
+define({id: "92857572", inputs: ["html","resize","jobsPlot","longList","tools","display"], body: async (html,resize,jobsPlot,longList,tools,display) => {
+display(await(
+html.fragment`<div
+  class="grid my-grid-cols-2"
+  style="grid-auto-rows: auto;"
+>
+  <div
+    class="card"
+    style="padding: 20px"
+  >
+    <h2>My Employment History 💼</h2>
+    <h3>
+      I gravitated towards software and data since graduated from college.
+    </h3>
+    <div>${ resize(jobsPlot) }</div>
+  </div>
+  <div
+    class="card"
+    style="padding: 20px; overflow: hidden"
+  >
+    <h2>Skills in my Toolbelt 🛠️</h2>
+    <h3>Some of my favorite technologies and the ones I frequently use.</h3>
+    <div style="padding: 2em">${longList(tools)}</div>
+  </div>
+</div>`
+))
+}});
+
+define({id: "3a735f70", inputs: ["previews","posts","display"], body: async (previews,posts,display) => {
+display(await(
+previews(posts)
+))
+}});
+
+define({id: "6fdc9a93", inputs: ["html"], outputs: ["previews","preview"], body: (html) => {
+function previews(notebooks) {
+  return html`<div
+    style="display: grid; grid-gap: .875rem; grid-template-columns: repeat(auto-fill, minmax(250px, 5fr));"
+  >
+    ${notebooks.map(preview)}
+  </div>`
+}
+
+function preview({ path, title, author = "Ismael Vargas", thumbnail }) {
+  // onmouseover=${(event) =>
+  //   (event.currentTarget.firstElementChild.style.borderColor = "#1b1e23")}
+  // onmouseout=${(event) =>
+  //   (event.currentTarget.firstElementChild.style.borderColor = "#e8e8e8")}
+
+  return html`<a
+    href="${encodeURI(path)}"
+    target="_blank"
+    title="${title} by ${author}"
+    style="
+      display: inline-flex; 
+      flex-direction: column; 
+      align-items: start; 
+      font: 400 .75rem var(--sans-serif); 
+      color: var(--theme-foreground); 
+      width: 100%;"
+  >
+    <div
+      style="
+        border: solid 1px #e8e8e8; 
+        border-radius: 4px; 
+        box-sizing: border-box; 
+        width: 100%; 
+        padding-top: 62.5%; 
+        background-size: cover; 
+        background-image: url(${encodeURI(thumbnail)});"
+    ></div>
+    <div
+      style="
+        width: 100%; 
+        white-space: nowrap; 
+        text-overflow: ellipsis; 
+        overflow: hidden;"
+    >
+      ${title}
+    </div>
+  </a>`
+}
+return {previews,preview};
+}});
+
+define({id: "f99361ce", inputs: ["FileAttachment"], outputs: ["posts"], body: (FileAttachment) => {
+const posts = [
+  {
+    path: "https://observablehq.com/@ismaelmasharo/elecciones-internas-en-peru-2020",
+    thumbnail: FileAttachment("./assets/thumbnails/elecciones-internas.png").href,
+    title: "2020 Internal Elections in Peru",
+  },
+  {
+    path: "https://observablehq.com/@ismaelmasharo/school-workforce-gender-wage-gap-in-england",
+    thumbnail: FileAttachment("./assets/thumbnails/wage-gap.png").href,
+    title: "School Workforce Gender Wage Gap in England",
+  },
+  {
+    path: "https://medium.com/@ismaelmasharo/10-years-of-stack-overflow-surveys-c8ff3f662b2f",
+    thumbnail: FileAttachment("./assets/thumbnails/job-satisfaction.png").href,
+    title: "Ten Years of Stack Overflow Surveys",
+  },
+  {
+    path: "https://medium.com/analytics-vidhya/cohort-analysis-95a794b4e58c",
+    thumbnail: FileAttachment("./assets/thumbnails/cohort-tables.png").href,
+    title: "Interactive Cohort Tables with Python",
+  },
+  {
+    path: "https://github.com/IsmaelMasharo/udacity-dsnd-projects/blob/master/image_classifier/Image%20Classifier%20Project.ipynb",
+    thumbnail: FileAttachment("./assets/thumbnails/flower-classifier.png").href,
+    title: "Image Flower Classification",
+  },
+  {
+    path: "https://github.com/IsmaelMasharo/udacity-dsnd-projects/blob/master/identifying-potential-customers/customer_segments_analysis.ipynb",
+    thumbnail: FileAttachment("./assets/thumbnails/kmeans-elbow.png").href,
+    title: "Identifying Customer Segments",
+  },
+]
+return {posts};
+}});
+
+define({id: "acb1bfd2", outputs: ["jobExp"], body: () => {
+const jobExp = [
+  {
+    start: "Sep 2023",
+    end: "Jun 2024",
+    at: "Freelance",
+    sector: "Education, eLearning",
+    jobTitle: "Web Freelance",
+    shortDescription: "Building frontend and data solutions while traveling around Latam.",
+  },
+  {
+    start: "Apr 2021",
+    end: "Aug 2023",
+    at: "Prey",
+    sector: "Device and Data Security",
+    jobTitle: "UX Data Analyst",
+    shortDescription:
+      "Analyzed user behavior, developed business metrics, and communicated insights to support a product-led conversion strategy.",
+  },
+  {
+    start: "Jun 2020",
+    end: "Mar 2021",
+    at: "La Posititiva Seguros",
+    sector: "Insurance",
+    jobTitle: "Backend Engineer",
+    shortDescription:
+      "Explored new solutions as part of the Digital Transformation Lab team to improve user experience.",
+  },
+  {
+    start: "Sep 2018",
+    end: "Mar 2020",
+    at: "Urbaner",
+    sector: "Logistics",
+    jobTitle: "Software Engineer",
+    shortDescription:
+      "Implemented a real-time delivery tracking app featuring live maps to visualize on-demand deliveries.",
+  },
+  {
+    start: "Feb 2018",
+    end: "Jul 2018",
+    at: "Magia Digital",
+    sector: "Crypto Trading",
+    jobTitle: "Full Stack Developer Intern",
+    shortDescription:
+      "Developed a Cryptocurrency Trading Exchange app, handling visualizations of real-time stock changes.",
+  },
+  {
+    start: "Aug 2017",
+    end: "May 2018",
+    at: "Pontificia Universidad Católica del Perú",
+    sector: "Food, Agroindustrial",
+    jobTitle: "Research Assistant",
+    shortDescription:
+      "Researched and designed a computer vision algorithms for a state-funded project about meat quality control.",
+  },
+]
+return {jobExp};
+}});
+
+define({id: "f9b40fc0", inputs: ["csvParse"], outputs: ["tools"], body: (csvParse) => {
+const tools = csvParse(
+  `category,tool,order
+Data,Ggplot,1
+Developer,React,2
+Developer,Tailwind,2
+Data,R,1
+Developer,D3,1
+Analytics,Statistics,5
+Design,Figma,3
+Data,Observable Plot,1
+Developer,Javascript,2
+Data,Seaborn,1
+Developer,HTML,2
+Developer,Vue,2
+Developer,CSS,1
+Developer,Docker,2
+Data,Dyplr,1
+Data,Vega-Lite,1
+Design,Storytelling,4
+Analytics,Data Science,5
+Developer,GIT,2
+Data,Jupyter,1
+Developer,Python,2
+Data,SQL,1
+Developer,AWS,2
+Design,UX,3
+Developer,Redux,2
+Data,Streamlit,1
+Analytics,Research,5
+Data,PowerBI,1
+Developer,Django,2
+Developer,Svelte,2
+Analytics,A/B Testing,1
+Data,Pandas,1
+Analytics,Machine Learning,5
+Design,SCRUM,3
+`
+)
+return {tools};
+}});
+
+define({id: "8c8342d3", inputs: ["utcParse","jobExp","Plot"], outputs: ["dateParser","jobExpD","jobsPlot"], body: (utcParse,jobExp,Plot) => {
+const dateParser = utcParse("%b %Y")
+const jobExpD = jobExp.map((d) => ({
+  ...d,
+  start: dateParser(d.start),
+  end: dateParser(d.end),
+}))
+
+const jobsPlot = (width) =>
+  Plot.plot({
+    width,
+    height: 280,
+    marginLeft: 100,
+    y: { axis: null, padding: 0.4 },
+    x: {
+      axis: "top",
+      grid: true,
+    },
+    marks: [
+      Plot.barX(jobExpD, {
+        x1: "start",
+        x2: "end",
+        y: "jobTitle",
+        sort: { y: "-x1" },
+        fill: "at",
+        rx: 4,
+      }),
+      Plot.text(jobExpD, {
+        x: "start",
+        y: "jobTitle",
+        text: "jobTitle",
+        textAnchor: "end",
+        dx: -3,
+        fontSize: 10.5,
+      }),
+      Plot.tip(
+        jobExpD,
+        Plot.pointer({
+          x1: "start",
+          x2: "end",
+          y: "jobTitle",
+          sort: { y: "-x1" },
+          title: (d) => `${d.at}\n\n${d.shortDescription}`,
+          fontSize: 14,
+          lineHeight: 1.2,
+        })
+      ),
+    ],
+  })
+return {dateParser,jobExpD,jobsPlot};
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Ismael Vargas</a></li>
+  </ol>
+  <details open>
+    <summary>Posts</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./stories/college_majors">US College Majors</a></li>
+    <li class="observablehq-link"><a href="./stories/spotify_history">My Spotify Dashboard</a></li>
+    <li class="observablehq-link"><a href="./stories/boardgame_ratings">Predicting Board Game Ratings</a></li>
+    <li class="observablehq-link"><a href="./stories/peru_census_2017">Peru Population Map</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:8fa9dd62:--></div>
+<style>
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--sans-serif);
+  margin: 4rem 0;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.hero h1 {
+  padding: .5rem;
+  margin: 2rem 0;
+  max-width: none;
+  font-size: 3em;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(30deg, var(--theme-foreground-focus), currentColor);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero h2 {
+  margin: 0;
+  max-width: 34em;
+  font-size: 1em;
+  font-style: initial;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--theme-foreground-alt);
+}
+
+@media (min-width: 600px) {
+  .hero {
+    margin: 4rem 0 8rem;
+  }
+  .hero h1 {
+    font-size: 4em;
+  }
+  .hero h2 {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .my-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+</style>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:8a9fab2b:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:92857572:--></div>
+<hr>
+<div style="font-family: sans-serif; margin-top: 4rem;">
+  <p>
+  These are some of my previous data related projects living outside of this page 👇.
+  </p>
+  <br>
+</div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:3a735f70:--></div>
+<div class="observablehq observablehq--block"><!--:6fdc9a93:--></div>
+<!-- PREVIOUS POSTS METADATA -->
+<div class="observablehq observablehq--block"><!--:f99361ce:--></div>
+<!-- JOBS METADATA -->
+<div class="observablehq observablehq--block"><!--:acb1bfd2:--></div>
+<!-- TOOLS  -->
+<div class="observablehq observablehq--block"><!--:f9b40fc0:--></div>
+<!-- VISUALIZATIONS  -->
+<div class="observablehq observablehq--block"><!--:8c8342d3:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="next" href="./stories/college_majors"><span>US College Majors</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
+</footer>
+</div>

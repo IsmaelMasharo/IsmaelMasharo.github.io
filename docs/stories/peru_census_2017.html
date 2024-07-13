@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Ismael Vargas</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="../_observablehq/client.js">
+<link rel="modulepreload" href="../_observablehq/runtime.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="../_npm/topojson-client@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/_esm.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/_esm.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="icon" href="../_file/assets/ismael-favicon.0c0e520b.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.js";
+import {registerFile} from "../_observablehq/stdlib.js";
+
+registerFile("../data/peru_maps/peru_departamental_simp.topojson", {"name":"../data/peru_maps/peru_departamental_simp.topojson","path":"../_file/data/peru_maps/peru_departamental_simp.986626ac.topojson","lastModified":1719801966465});
+registerFile("../data/tomo_00_01_wrangled_lonlat.csv", {"name":"../data/tomo_00_01_wrangled_lonlat.csv","mimeType":"text/csv","path":"../_file/data/tomo_00_01_wrangled_lonlat.a55af104.csv","lastModified":1719801966468});
+
+define({id: "8d0ca218", inputs: ["FileAttachment","topojson"], outputs: ["peruDeps","population","deps"], body: async (FileAttachment,topojson) => {
+const peruDeps = await FileAttachment(
+  "../data/peru_maps/peru_departamental_simp.topojson"
+).json()
+const population = await FileAttachment(
+  "../data/tomo_00_01_wrangled_lonlat.csv"
+).csv({ typed: true })
+
+const deps = topojson.mesh(peruDeps, peruDeps.objects.name)
+return {peruDeps,population,deps};
+}});
+
+define({id: "9050fb8d", inputs: ["view","Inputs"], outputs: ["poulationType"], body: (view,Inputs) => {
+const poulationType = view(
+  Inputs.radio(
+    ["varon_urbano", "mujer_urbano", "varon_rural", "mujer_rural"],
+    { label: "Population Type", value: "mujer_urbano" }
+  )
+)
+return {poulationType};
+}});
+
+define({id: "398a20f0", inputs: ["Plot","d3","deps","population","poulationType","display"], body: async (Plot,d3,deps,population,poulationType,display) => {
+display(await(
+Plot.plot({
+  length: {
+    // avoid 0 population (urbano) to no length
+    transform: (x) => x + 1,
+  },
+  projection: {
+    type: "mercator",
+    domain: d3.geoCircle().center([-75.0152, -9.19]).radius(9)(),
+    inset: 20,
+  },
+  marks: [
+    Plot.geo(deps, { strokeWidth: 0.3 }),
+    Plot.spike(population, { x: "lon", y: "lat", length: poulationType }),
+    Plot.tip(population, Plot.pointer({ x: "lon", y: "lat" })),
+  ],
+})
+))
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Ismael Vargas</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Posts</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./college_majors">US College Majors</a></li>
+    <li class="observablehq-link"><a href="./spotify_history">My Spotify Dashboard</a></li>
+    <li class="observablehq-link"><a href="./boardgame_ratings">Predicting Board Game Ratings</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./peru_census_2017">Peru Population Map</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h3 id="work-in-progress" tabindex="-1"><a class="observablehq-header-anchor" href="#work-in-progress">Work in Progress</a></h3>
+<div class="observablehq observablehq--block"><!--:8d0ca218:--></div>
+<div class="observablehq observablehq--block"><!--:9050fb8d:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:398a20f0:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./boardgame_ratings"><span>Predicting Board Game Ratings</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
+</footer>
+</div>
