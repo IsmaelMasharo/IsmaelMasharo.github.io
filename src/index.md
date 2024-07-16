@@ -66,7 +66,7 @@ import { csvParse, utcParse } from "npm:d3"
 <div class="hero">
   <h1>Hi, I'm Ismael</h1>
   <h2>
-    I focus on
+    I'm a Software Developer focused on
     <span style="border-bottom: solid 2px #efb118;">front-end development</span>
     and
     <span style="border-bottom: solid 2px #4269d0;">data visualization</span>,
