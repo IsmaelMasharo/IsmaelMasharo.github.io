@@ -1,5 +1,3 @@
-### Work in Progress
-
 ```js
 const peruDeps = await FileAttachment(
   "../data/peru_maps/peru_departamental_simp.topojson"
