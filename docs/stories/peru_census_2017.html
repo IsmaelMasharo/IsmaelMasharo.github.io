@@ -15,7 +15,7 @@
 <link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3@7.9.0/_esm.js">
 <link rel="modulepreload" href="../_observablehq/stdlib/inputs.js">
-<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/_esm.js">
 <link rel="modulepreload" href="../_npm/topojson-client@3.1.0/_esm.js">
 <link rel="modulepreload" href="../_npm/htl@0.3.1/_esm.js">
 <link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
@@ -31,7 +31,7 @@
 <link rel="modulepreload" href="../_npm/d3-ease@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="../_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-geo@3.1.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/_esm.js">
@@ -59,8 +59,8 @@
 import {define} from "../_observablehq/client.js";
 import {registerFile} from "../_observablehq/stdlib.js";
 
-registerFile("../data/peru_maps/peru_departamental_simp.topojson", {"name":"../data/peru_maps/peru_departamental_simp.topojson","path":"../_file/data/peru_maps/peru_departamental_simp.986626ac.topojson","lastModified":1719801966465});
-registerFile("../data/tomo_00_01_wrangled_lonlat.csv", {"name":"../data/tomo_00_01_wrangled_lonlat.csv","mimeType":"text/csv","path":"../_file/data/tomo_00_01_wrangled_lonlat.a55af104.csv","lastModified":1719801966468});
+registerFile("../data/peru_maps/peru_departamental_simp.topojson", {"name":"../data/peru_maps/peru_departamental_simp.topojson","path":"../_file/data/peru_maps/peru_departamental_simp.986626ac.topojson","lastModified":1772415012662});
+registerFile("../data/tomo_00_01_wrangled_lonlat.csv", {"name":"../data/tomo_00_01_wrangled_lonlat.csv","mimeType":"text/csv","path":"../_file/data/tomo_00_01_wrangled_lonlat.c95bca48.csv","lastModified":1772415012663});
 
 define({id: "8d0ca218", inputs: ["FileAttachment","topojson"], outputs: ["peruDeps","population","deps"], body: async (FileAttachment,topojson) => {
 const peruDeps = await FileAttachment(
@@ -130,13 +130,12 @@ Plot.plot({
 </aside>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<h3 id="work-in-progress" tabindex="-1"><a class="observablehq-header-anchor" href="#work-in-progress">Work in Progress</a></h3>
+<h3 id="wip" tabindex="-1"><a class="observablehq-header-anchor" href="#wip">WIP</a></h3>
 <div class="observablehq observablehq--block"><!--:8d0ca218:--></div>
 <div class="observablehq observablehq--block"><!--:9050fb8d:--></div>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:398a20f0:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./boardgame_ratings"><span>Predicting Board Game Ratings</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
 </footer>
 </div>

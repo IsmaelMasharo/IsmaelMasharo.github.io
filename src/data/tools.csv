@@ -1,0 +1,50 @@
+category,tool
+Languages,Python
+Languages,JavaScript
+Languages,TypeScript
+Languages,SQL
+Languages,Go
+Languages,R
+Backend,Django
+Backend,FastAPI
+Backend,Celery
+Backend,Redis
+Backend,WebSockets
+Backend,REST
+Backend,Microservices
+Backend,Pytest
+Frontend,React
+Frontend,Redux
+Frontend,Remix
+Frontend,HTML
+Frontend,CSS
+Frontend,Tailwind
+Frontend,D3
+Frontend,Observable
+Data & AI,PostgreSQL
+Data & AI,Pandas
+Data & AI,Scikit-Learn
+Data & AI,LLM
+Data & AI,RAG
+Data & AI,Typesense
+Data & AI,Prompt Engineering
+Data & AI,OpenAI
+Data & AI,Claude Code
+Data & AI,Data Science
+Data & AI,Machine Learning
+Data & AI,Streamlit
+Data & AI,Mixpanel
+Data & AI,A/B Testing
+Cloud & DevOps,AWS
+Cloud & DevOps,Docker
+Cloud & DevOps,CI/CD
+Cloud & DevOps,Nginx
+Cloud & DevOps,Git
+Cloud & DevOps,GitHub
+Cloud & DevOps,Grafana
+Cloud & DevOps,Sentry
+Design / UX,UX
+Design / UX,Figma
+Design / UX,Storytelling
+Design / UX,SCRUM
+Design / UX,Research

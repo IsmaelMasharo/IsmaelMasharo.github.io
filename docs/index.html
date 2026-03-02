@@ -10,11 +10,12 @@
 <link rel="modulepreload" href="./_observablehq/client.js">
 <link rel="modulepreload" href="./_observablehq/runtime.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.js">
-<link rel="modulepreload" href="./_import/components/tools.ab6249bf.js">
+<link rel="modulepreload" href="./_import/components/tools.5eed0584.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="./_import/utils/constants.e116e703.js">
+<link rel="modulepreload" href="./_import/utils/constants.bd31c40f.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
@@ -24,11 +25,10 @@
 <link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.2/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
@@ -57,31 +57,29 @@
 import {define} from "./_observablehq/client.js";
 import {registerFile} from "./_observablehq/stdlib.js";
 
-registerFile("./assets/thumbnails/cohort-tables.png", {"name":"./assets/thumbnails/cohort-tables.png","mimeType":"image/png","path":"./_file/assets/thumbnails/cohort-tables.8e171b13.png","lastModified":1719678048717});
-registerFile("./assets/thumbnails/elecciones-internas.png", {"name":"./assets/thumbnails/elecciones-internas.png","mimeType":"image/png","path":"./_file/assets/thumbnails/elecciones-internas.b75f1332.png","lastModified":1719678048720});
-registerFile("./assets/thumbnails/flower-classifier.png", {"name":"./assets/thumbnails/flower-classifier.png","mimeType":"image/png","path":"./_file/assets/thumbnails/flower-classifier.b5ce7ba7.png","lastModified":1719678048722});
-registerFile("./assets/thumbnails/job-satisfaction.png", {"name":"./assets/thumbnails/job-satisfaction.png","mimeType":"image/png","path":"./_file/assets/thumbnails/job-satisfaction.9e0a6882.png","lastModified":1719678048724});
-registerFile("./assets/thumbnails/kmeans-elbow.png", {"name":"./assets/thumbnails/kmeans-elbow.png","mimeType":"image/png","path":"./_file/assets/thumbnails/kmeans-elbow.b4cc188c.png","lastModified":1719678048726});
-registerFile("./assets/thumbnails/wage-gap.png", {"name":"./assets/thumbnails/wage-gap.png","mimeType":"image/png","path":"./_file/assets/thumbnails/wage-gap.d6f6c950.png","lastModified":1719678048729});
+registerFile("./assets/thumbnails/cohort-tables.png", {"name":"./assets/thumbnails/cohort-tables.png","mimeType":"image/png","path":"./_file/assets/thumbnails/cohort-tables.8e171b13.png","lastModified":1772415012657});
+registerFile("./assets/thumbnails/elecciones-internas.png", {"name":"./assets/thumbnails/elecciones-internas.png","mimeType":"image/png","path":"./_file/assets/thumbnails/elecciones-internas.b75f1332.png","lastModified":1772415012657});
+registerFile("./assets/thumbnails/flower-classifier.png", {"name":"./assets/thumbnails/flower-classifier.png","mimeType":"image/png","path":"./_file/assets/thumbnails/flower-classifier.b5ce7ba7.png","lastModified":1772415012658});
+registerFile("./assets/thumbnails/job-satisfaction.png", {"name":"./assets/thumbnails/job-satisfaction.png","mimeType":"image/png","path":"./_file/assets/thumbnails/job-satisfaction.9e0a6882.png","lastModified":1772415012658});
+registerFile("./assets/thumbnails/kmeans-elbow.png", {"name":"./assets/thumbnails/kmeans-elbow.png","mimeType":"image/png","path":"./_file/assets/thumbnails/kmeans-elbow.b4cc188c.png","lastModified":1772415012658});
+registerFile("./assets/thumbnails/wage-gap.png", {"name":"./assets/thumbnails/wage-gap.png","mimeType":"image/png","path":"./_file/assets/thumbnails/wage-gap.d6f6c950.png","lastModified":1772415012659});
+registerFile("./data/tools.csv", {"name":"./data/tools.csv","mimeType":"text/csv","path":"./_file/data/tools.a9dc1229.csv","lastModified":1772419129822});
 
-define({id: "8fa9dd62", outputs: ["longList","csvParse","utcParse"], body: async () => {
-const [{longList}, {csvParse, utcParse}] = await Promise.all([import("./_import/components/tools.ab6249bf.js"), import("./_npm/d3@7.9.0/_esm.js")]);
+define({id: "79f7beea", outputs: ["longList","utcParse"], body: async () => {
+const [{longList}, {utcParse}] = await Promise.all([import("./_import/components/tools.5eed0584.js"), import("./_npm/d3@7.9.0/_esm.js")]);
 
-return {longList,csvParse,utcParse};
+return {longList,utcParse};
 }});
 
-define({id: "69fdf2ff", inputs: ["html","display"], body: async (html,display) => {
+define({id: "2b2e7edd", inputs: ["html","display"], body: async (html,display) => {
 display(await(
 html.fragment`<div class="hero">
   <h1>Hi, I'm Ismael</h1>
   <h2>
-    I'm a Software Developer focused on
-    <span style="border-bottom: solid 2px #efb118;">front-end development</span>
-    and
-    <span style="border-bottom: solid 2px #4269d0;">data visualization</span>,
-    creating
-    <span style="border-bottom: solid 2px #ff725c;">visual</span> solutions
-    through code.
+    I'm a Software Engineer working at the intersection of 
+    <span style="border-bottom: solid 2px #efb118;">Software</span>,
+    <span style="border-bottom: solid 2px #4269d0;">Data</span>, and
+    <span style="border-bottom: solid 2px #ff725c;">AI</span> turning ideas into production-ready solutions.
   </h2>
 </div>`
 ))
@@ -208,22 +206,30 @@ const posts = [
 return {posts};
 }});
 
-define({id: "acb1bfd2", outputs: ["jobExp"], body: () => {
+define({id: "9e2c5bba", outputs: ["jobExp"], body: () => {
 const jobExp = [
+  {
+    start: "Aug 2024",
+    end: "Feb 2026",
+    at: "Opolis",
+    sector: "Fintech",
+    jobTitle: "Full Stack Engineer",
+    shortDescription: "Developed internal tools for a US-based platform supporting independent workers.",
+  },
   {
     start: "Sep 2023",
     end: "Jun 2024",
     at: "Freelance",
     sector: "Education, eLearning",
-    jobTitle: "Web Freelance",
-    shortDescription: "Building frontend and data solutions while traveling around Latam.",
+    jobTitle: "Freelancer",
+    shortDescription: "Building web applications while traveling around Latam.",
   },
   {
     start: "Apr 2021",
     end: "Aug 2023",
     at: "Prey",
     sector: "Device and Data Security",
-    jobTitle: "UX Data Analyst",
+    jobTitle: "Data Analyst / Developer",
     shortDescription:
       "Analyzed user behavior, developed business metrics, and communicated insights to support a product-led conversion strategy.",
   },
@@ -267,45 +273,8 @@ const jobExp = [
 return {jobExp};
 }});
 
-define({id: "f9b40fc0", inputs: ["csvParse"], outputs: ["tools"], body: (csvParse) => {
-const tools = csvParse(
-  `category,tool,order
-Data,Ggplot,1
-Developer,React,2
-Developer,Tailwind,2
-Data,R,1
-Developer,D3,1
-Analytics,Statistics,5
-Design,Figma,3
-Data,Observable Plot,1
-Developer,Javascript,2
-Data,Seaborn,1
-Developer,HTML,2
-Developer,Vue,2
-Developer,CSS,1
-Developer,Docker,2
-Data,Dyplr,1
-Data,Vega-Lite,1
-Design,Storytelling,4
-Analytics,Data Science,5
-Developer,GIT,2
-Data,Jupyter,1
-Developer,Python,2
-Data,SQL,1
-Developer,AWS,2
-Design,UX,3
-Developer,Redux,2
-Data,Streamlit,1
-Analytics,Research,5
-Data,PowerBI,1
-Developer,Django,2
-Developer,Svelte,2
-Analytics,A/B Testing,1
-Data,Pandas,1
-Analytics,Machine Learning,5
-Design,SCRUM,3
-`
-)
+define({id: "b8812fef", inputs: ["FileAttachment"], outputs: ["tools"], body: (FileAttachment) => {
+const tools = FileAttachment("./data/tools.csv").csv()
 return {tools};
 }});
 
@@ -382,7 +351,7 @@ return {dateParser,jobExpD,jobsPlot};
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:8fa9dd62:--></div>
+<div class="observablehq observablehq--block"><!--:79f7beea:--></div>
 <style>
 
 .hero {
@@ -437,7 +406,7 @@ return {dateParser,jobExpD,jobsPlot};
 }
 
 </style>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:69fdf2ff:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2b2e7edd:--></div>
 <div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:92857572:--></div>
 <hr>
 <div style="font-family: sans-serif; margin-top: 4rem;">
@@ -451,14 +420,13 @@ return {dateParser,jobExpD,jobsPlot};
 <!-- PREVIOUS POSTS METADATA -->
 <div class="observablehq observablehq--block"><!--:f99361ce:--></div>
 <!-- JOBS METADATA -->
-<div class="observablehq observablehq--block"><!--:acb1bfd2:--></div>
+<div class="observablehq observablehq--block"><!--:9e2c5bba:--></div>
 <!-- TOOLS  -->
-<div class="observablehq observablehq--block"><!--:f9b40fc0:--></div>
+<div class="observablehq observablehq--block"><!--:b8812fef:--></div>
 <!-- VISUALIZATIONS  -->
 <div class="observablehq observablehq--block"><!--:8c8342d3:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./stories/college_majors"><span>US College Majors</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
 </footer>
 </div>

@@ -4,7 +4,7 @@ toc: false
 
 ```js
 import { longList } from "/components/tools.js"
-import { csvParse, utcParse } from "npm:d3"
+import { utcParse } from "npm:d3"
 ```
 
 <style>
@@ -66,13 +66,10 @@ import { csvParse, utcParse } from "npm:d3"
 <div class="hero">
   <h1>Hi, I'm Ismael</h1>
   <h2>
-    I'm a Software Developer focused on
-    <span style="border-bottom: solid 2px #efb118;">front-end development</span>
-    and
-    <span style="border-bottom: solid 2px #4269d0;">data visualization</span>,
-    creating
-    <span style="border-bottom: solid 2px #ff725c;">visual</span> solutions
-    through code.
+    I'm a Software Engineer working at the intersection of 
+    <span style="border-bottom: solid 2px #efb118;">Software</span>,
+    <span style="border-bottom: solid 2px #4269d0;">Data</span>, and
+    <span style="border-bottom: solid 2px #ff725c;">AI</span> turning ideas into production-ready solutions.
   </h2>
 </div>
 ```
@@ -208,19 +205,27 @@ const posts = [
 ```js
 const jobExp = [
   {
+    start: "Aug 2024",
+    end: "Feb 2026",
+    at: "Opolis",
+    sector: "Fintech",
+    jobTitle: "Full Stack Engineer",
+    shortDescription: "Developed internal tools for a US-based platform supporting independent workers.",
+  },
+  {
     start: "Sep 2023",
     end: "Jun 2024",
     at: "Freelance",
     sector: "Education, eLearning",
-    jobTitle: "Web Freelance",
-    shortDescription: "Building frontend and data solutions while traveling around Latam.",
+    jobTitle: "Freelancer",
+    shortDescription: "Building web applications while traveling around Latam.",
   },
   {
     start: "Apr 2021",
     end: "Aug 2023",
     at: "Prey",
     sector: "Device and Data Security",
-    jobTitle: "UX Data Analyst",
+    jobTitle: "Data Analyst / Developer",
     shortDescription:
       "Analyzed user behavior, developed business metrics, and communicated insights to support a product-led conversion strategy.",
   },
@@ -266,44 +271,7 @@ const jobExp = [
 <!-- TOOLS  -->
 
 ```js
-const tools = csvParse(
-  `category,tool,order
-Data,Ggplot,1
-Developer,React,2
-Developer,Tailwind,2
-Data,R,1
-Developer,D3,1
-Analytics,Statistics,5
-Design,Figma,3
-Data,Observable Plot,1
-Developer,Javascript,2
-Data,Seaborn,1
-Developer,HTML,2
-Developer,Vue,2
-Developer,CSS,1
-Developer,Docker,2
-Data,Dyplr,1
-Data,Vega-Lite,1
-Design,Storytelling,4
-Analytics,Data Science,5
-Developer,GIT,2
-Data,Jupyter,1
-Developer,Python,2
-Data,SQL,1
-Developer,AWS,2
-Design,UX,3
-Developer,Redux,2
-Data,Streamlit,1
-Analytics,Research,5
-Data,PowerBI,1
-Developer,Django,2
-Developer,Svelte,2
-Analytics,A/B Testing,1
-Data,Pandas,1
-Analytics,Machine Learning,5
-Design,SCRUM,3
-`
-)
+const tools = FileAttachment("data/tools.csv").csv()
 ```
 
 <!-- VISUALIZATIONS  -->

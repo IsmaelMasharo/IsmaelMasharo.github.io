@@ -157,7 +157,7 @@ game_folds <span class="hljs-operator">&lt;-</span> vfold_cv<span class="hljs-pu
   geom_histogram<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
 </code></pre>
 <div class="image-container">
-<img src="../_file/data/boardgame_ratings/rating_histogram.12747a2e.svg" alt="rating histogram" style="max-width: 100%;">
+<img src="../_file/data/boardgame_ratings/rating_histogram.cb1f7bd7.svg" alt="rating histogram" style="max-width: 100%;">
 </div>
 <p><strong>How do ratings vary considering the number of users who rated the game?</strong></p>
 <p>The larger the sample size (users rated), the lower the rating noise and the more concentrated it is around 7.5. This is just the central limit theorem in real life.</p>
@@ -177,7 +177,7 @@ game_folds <span class="hljs-operator">&lt;-</span> vfold_cv<span class="hljs-pu
   geom_line<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
 </code></pre>
 <div class="image-container">
-<img src="../_file/data/boardgame_ratings/games_over_years.e3523340.svg" alt="rating histogram" style="max-width: 100%;">
+<img src="../_file/data/boardgame_ratings/games_over_years.16a34242.svg" alt="rating histogram" style="max-width: 100%;">
 </div>
 <!-- ![games over years](../data/boardgame_ratings/games_over_years.svg) -->
 <p><strong>What is the distribution of maximum recommended playtime?</strong></p>
@@ -190,7 +190,7 @@ game_folds <span class="hljs-operator">&lt;-</span> vfold_cv<span class="hljs-pu
   scale_x_log10<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
 </code></pre>
 <div class="image-container">
-<img src="../_file/data/boardgame_ratings/max_playtime.7943aef3.svg" alt="rating histogram" style="max-width: 100%;">
+<img src="../_file/data/boardgame_ratings/max_playtime.b8cd3c20.svg" alt="rating histogram" style="max-width: 100%;">
 </div>
 <p><strong>The most common board game categories, families?</strong></p>
 <p>As seen previously some of the categorical variables can take many values, as in the case of the board game category. Some feature engineering is done to extract the values in a more tidy fashion to make it easier to work with for both visualization and model building.</p>
@@ -219,7 +219,7 @@ game_folds <span class="hljs-operator">&lt;-</span> vfold_cv<span class="hljs-pu
   facet_wrap<span class="hljs-punctuation">(</span><span class="hljs-operator">~</span>type<span class="hljs-punctuation">,</span> scales <span class="hljs-operator">=</span> <span class="hljs-string">"free_y"</span><span class="hljs-punctuation">)</span>
 </code></pre>
 <div class="image-container">
-<img src="../_file/data/boardgame_ratings/top_categories.c3b3d178.svg" alt="rating histogram" style="max-width: 100%;">
+<img src="../_file/data/boardgame_ratings/top_categories.79cce3ca.svg" alt="rating histogram" style="max-width: 100%;">
 </div>
 <p>By looking at the plot, the category of the game has more occurrences than other variables like <em>designer</em>. Nonetheless, it is not the case that game category beats all other variables since, for example, the most common family game <em>Crowfunding</em> has more occurrences than the remaining after the top 3 category games. So other categorical variables could have predictive power as well.</p>
 <hr>
@@ -402,7 +402,7 @@ F-statistic:   763 on 3 and 7895 DF,  p-value: &lt; 2.2e-16
   geom_boxplot<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span>
 </code></pre>
 <div class="image-container">
-<img src="../_file/data/boardgame_ratings/ratings_boxplot_per_artists.1e57f7b7.svg" alt="rating histogram" style="max-width: 100%;">
+<img src="../_file/data/boardgame_ratings/ratings_boxplot_per_artists.7b484338.svg" alt="rating histogram" style="max-width: 100%;">
 </div>
 <p>Comparing the distribution of average ratings per artist shows a correlation with higher or lower-rated games. A boxplot comparing the values shows actual differences in the rating based on <em>artist</em>. So, it seems reasonable to use categorical variables to model ratings.</p>
 <p>The difference in ratings per artist in this case should not be interpreted as causation, since a game with a higher rating could not be due to the artist but maybe a related feature, a good publisher for example.</p>
@@ -600,6 +600,5 @@ last_fit<span class="hljs-punctuation">(</span>
 </style></main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./spotify_history"><span>My Spotify Dashboard</span></a><a rel="next" href="./peru_census_2017"><span>Peru Population Map</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
 </footer>
 </div>

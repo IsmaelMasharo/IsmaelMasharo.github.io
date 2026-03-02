@@ -10,14 +10,14 @@
 <link rel="modulepreload" href="../_observablehq/client.js">
 <link rel="modulepreload" href="../_observablehq/runtime.js">
 <link rel="modulepreload" href="../_observablehq/stdlib.js">
-<link rel="modulepreload" href="../_import/components/topLevelPlot.96e170f0.js">
-<link rel="modulepreload" href="../_import/components/trend.d1515ee2.js">
+<link rel="modulepreload" href="../_import/components/topLevelPlot.4e21b319.js">
+<link rel="modulepreload" href="../_import/components/trend.2adda780.js">
 <link rel="modulepreload" href="../_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.15/_esm.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/_esm.js">
 <link rel="modulepreload" href="../_npm/htl@0.3.1/_esm.js">
-<link rel="modulepreload" href="../_npm/apache-arrow@16.1.0/_esm.js">
-<link rel="modulepreload" href="../_npm/parquet-wasm@0.6.1/_esm.js">
-<link rel="modulepreload" href="../_npm/arquero@5.4.0/_esm.js">
+<link rel="modulepreload" href="../_npm/apache-arrow@21.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/parquet-wasm@0.7.1/_esm.js">
+<link rel="modulepreload" href="../_npm/arquero@8.0.3/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-array@3.2.4/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-axis@3.0.0/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-brush@3.0.0/_esm.js">
@@ -31,7 +31,7 @@
 <link rel="modulepreload" href="../_npm/d3-ease@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-force@3.0.0/_esm.js">
-<link rel="modulepreload" href="../_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-geo@3.1.1/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/_esm.js">
 <link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/_esm.js">
@@ -50,9 +50,10 @@
 <link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/_esm.js">
 <link rel="modulepreload" href="../_npm/isoformat@0.2.1/_esm.js">
 <link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="../_npm/tslib@2.6.3/_esm.js">
-<link rel="modulepreload" href="../_npm/flatbuffers@24.3.25/_esm.js">
-<link rel="modulepreload" href="../_npm/acorn@8.12.0/_esm.js">
+<link rel="modulepreload" href="../_npm/tslib@2.8.1/_esm.js">
+<link rel="modulepreload" href="../_npm/flatbuffers@25.9.23/_esm.js">
+<link rel="modulepreload" href="../_npm/acorn@8.16.0/_esm.js">
+<link rel="modulepreload" href="../_npm/@uwdata/flechette@2.3.0/_esm.js">
 <link rel="modulepreload" href="../_npm/internmap@2.0.3/_esm.js">
 <link rel="modulepreload" href="../_npm/delaunator@5.0.1/_esm.js">
 <link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/_esm.js">
@@ -63,10 +64,10 @@
 import {define} from "../_observablehq/client.js";
 import {registerFile} from "../_observablehq/stdlib.js";
 
-registerFile("../data/spotify-2023.parquet", {"name":"../data/spotify-2023.parquet","path":"../_file/data/spotify-2023.fb1f3f43.parquet","lastModified":1719678048757});
+registerFile("../data/spotify-2023.parquet", {"name":"../data/spotify-2023.parquet","path":"../_file/data/spotify-2023.fb1f3f43.parquet","lastModified":1772415012663});
 
 define({id: "fe47f292", outputs: ["TopLevel","Trend","utcFormat"], body: async () => {
-const [{TopLevel}, {Trend}, {utcFormat}] = await Promise.all([import("../_import/components/topLevelPlot.96e170f0.js"), import("../_import/components/trend.d1515ee2.js"), import("../_npm/d3@7.9.0/_esm.js")]);
+const [{TopLevel}, {Trend}, {utcFormat}] = await Promise.all([import("../_import/components/topLevelPlot.4e21b319.js"), import("../_import/components/trend.2adda780.js"), import("../_npm/d3@7.9.0/_esm.js")]);
 // import aq, { op, renameLower } from "../utils/arquero.js"
 
 return {TopLevel,Trend,utcFormat};
@@ -275,6 +276,5 @@ return {tmFormat,lnplot};
 </style></main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./college_majors"><span>US College Majors</span></a><a rel="next" href="./boardgame_ratings"><span>Predicting Board Game Ratings</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a>.</div>
 </footer>
 </div>
