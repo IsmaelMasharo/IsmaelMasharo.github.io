@@ -205,7 +205,7 @@ const posts = [
 ```js
 const jobExp = [
   {
-    start: "Aug 2024",
+    start: "Jan 2024",
     end: "Feb 2026",
     at: "Opolis",
     sector: "Fintech",
@@ -213,16 +213,8 @@ const jobExp = [
     shortDescription: "Developed internal tools for a US-based platform supporting independent workers.",
   },
   {
-    start: "Sep 2023",
-    end: "Jun 2024",
-    at: "Freelance",
-    sector: "Education, eLearning",
-    jobTitle: "Freelancer",
-    shortDescription: "Building web applications while traveling around Latam.",
-  },
-  {
-    start: "Apr 2021",
-    end: "Aug 2023",
+    start: "Jun 2021",
+    end: "Dec 2023",
     at: "Prey",
     sector: "Device and Data Security",
     jobTitle: "Data Analyst / Developer",
@@ -231,7 +223,7 @@ const jobExp = [
   },
   {
     start: "Jun 2020",
-    end: "Mar 2021",
+    end: "May 2021",
     at: "La Posititiva Seguros",
     sector: "Insurance",
     jobTitle: "Backend Engineer",
@@ -239,8 +231,8 @@ const jobExp = [
       "Explored new solutions as part of the Digital Transformation Lab team to improve user experience.",
   },
   {
-    start: "Sep 2018",
-    end: "Mar 2020",
+    start: "Jul 2018",
+    end: "Jun 2020",
     at: "Urbaner",
     sector: "Logistics",
     jobTitle: "Software Engineer",
