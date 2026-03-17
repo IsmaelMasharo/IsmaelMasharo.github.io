@@ -206,14 +206,14 @@ const posts = [
 return {posts};
 }});
 
-define({id: "aaad968a", outputs: ["jobExp"], body: () => {
+define({id: "cc91945d", outputs: ["jobExp"], body: () => {
 const jobExp = [
   {
     start: "Jan 2024",
     end: "Feb 2026",
     at: "Opolis",
     sector: "Fintech",
-    jobTitle: "Full Stack Engineer",
+    jobTitle: "FS Developer | AI Engineer",
     shortDescription: "Developed internal tools for a US-based platform supporting independent workers.",
   },
   {
@@ -221,7 +221,7 @@ const jobExp = [
     end: "Dec 2023",
     at: "Prey",
     sector: "Device and Data Security",
-    jobTitle: "Data Analyst / Developer",
+    jobTitle: "FS Developer | AI Engineer",
     shortDescription:
       "Analyzed user behavior, developed business metrics, and communicated insights to support a product-led conversion strategy.",
   },
@@ -230,7 +230,7 @@ const jobExp = [
     end: "May 2021",
     at: "La Posititiva Seguros",
     sector: "Insurance",
-    jobTitle: "Backend Engineer",
+    jobTitle: "FS Developer",
     shortDescription:
       "Explored new solutions as part of the Digital Transformation Lab team to improve user experience.",
   },
@@ -239,7 +239,7 @@ const jobExp = [
     end: "Jun 2020",
     at: "Urbaner",
     sector: "Logistics",
-    jobTitle: "Software Engineer",
+    jobTitle: "FS Developer",
     shortDescription:
       "Implemented a real-time delivery tracking app featuring live maps to visualize on-demand deliveries.",
   },
@@ -248,7 +248,7 @@ const jobExp = [
     end: "Jul 2018",
     at: "Magia Digital",
     sector: "Crypto Trading",
-    jobTitle: "Full Stack Developer Intern",
+    jobTitle: "FS Developer Intern",
     shortDescription:
       "Developed a Cryptocurrency Trading Exchange app, handling visualizations of real-time stock changes.",
   },
@@ -270,7 +270,7 @@ const tools = FileAttachment("./data/tools.csv").csv()
 return {tools};
 }});
 
-define({id: "8c8342d3", inputs: ["utcParse","jobExp","Plot"], outputs: ["dateParser","jobExpD","jobsPlot"], body: (utcParse,jobExp,Plot) => {
+define({id: "02925993", inputs: ["utcParse","jobExp","Plot"], outputs: ["dateParser","jobExpD","jobsPlot"], body: (utcParse,jobExp,Plot) => {
 const dateParser = utcParse("%b %Y")
 const jobExpD = jobExp.map((d) => ({
   ...d,
@@ -292,14 +292,14 @@ const jobsPlot = (width) =>
       Plot.barX(jobExpD, {
         x1: "start",
         x2: "end",
-        y: "jobTitle",
+        y: "sector",
         sort: { y: "-x1" },
         fill: "at",
         rx: 4,
       }),
       Plot.text(jobExpD, {
         x: "start",
-        y: "jobTitle",
+        y: "sector",
         text: "jobTitle",
         textAnchor: "end",
         dx: -3,
@@ -310,7 +310,7 @@ const jobsPlot = (width) =>
         Plot.pointer({
           x1: "start",
           x2: "end",
-          y: "jobTitle",
+          y: "sector",
           sort: { y: "-x1" },
           title: (d) => `${d.at}\n\n${d.shortDescription}`,
           fontSize: 14,
@@ -412,11 +412,11 @@ return {dateParser,jobExpD,jobsPlot};
 <!-- PREVIOUS POSTS METADATA -->
 <div class="observablehq observablehq--block"><!--:f99361ce:--></div>
 <!-- JOBS METADATA -->
-<div class="observablehq observablehq--block"><!--:aaad968a:--></div>
+<div class="observablehq observablehq--block"><!--:cc91945d:--></div>
 <!-- TOOLS  -->
 <div class="observablehq observablehq--block"><!--:b8812fef:--></div>
 <!-- VISUALIZATIONS  -->
-<div class="observablehq observablehq--block"><!--:8c8342d3:--></div>
+<div class="observablehq observablehq--block"><!--:02925993:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./stories/college_majors"><span>US College Majors</span></a></nav>

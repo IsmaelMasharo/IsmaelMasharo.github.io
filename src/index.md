@@ -209,7 +209,7 @@ const jobExp = [
     end: "Feb 2026",
     at: "Opolis",
     sector: "Fintech",
-    jobTitle: "Full Stack Engineer",
+    jobTitle: "FS Developer | AI Engineer",
     shortDescription: "Developed internal tools for a US-based platform supporting independent workers.",
   },
   {
@@ -217,7 +217,7 @@ const jobExp = [
     end: "Dec 2023",
     at: "Prey",
     sector: "Device and Data Security",
-    jobTitle: "Data Analyst / Developer",
+    jobTitle: "FS Developer | AI Engineer",
     shortDescription:
       "Analyzed user behavior, developed business metrics, and communicated insights to support a product-led conversion strategy.",
   },
@@ -226,7 +226,7 @@ const jobExp = [
     end: "May 2021",
     at: "La Posititiva Seguros",
     sector: "Insurance",
-    jobTitle: "Backend Engineer",
+    jobTitle: "FS Developer",
     shortDescription:
       "Explored new solutions as part of the Digital Transformation Lab team to improve user experience.",
   },
@@ -235,7 +235,7 @@ const jobExp = [
     end: "Jun 2020",
     at: "Urbaner",
     sector: "Logistics",
-    jobTitle: "Software Engineer",
+    jobTitle: "FS Developer",
     shortDescription:
       "Implemented a real-time delivery tracking app featuring live maps to visualize on-demand deliveries.",
   },
@@ -244,7 +244,7 @@ const jobExp = [
     end: "Jul 2018",
     at: "Magia Digital",
     sector: "Crypto Trading",
-    jobTitle: "Full Stack Developer Intern",
+    jobTitle: "FS Developer Intern",
     shortDescription:
       "Developed a Cryptocurrency Trading Exchange app, handling visualizations of real-time stock changes.",
   },
@@ -290,14 +290,14 @@ const jobsPlot = (width) =>
       Plot.barX(jobExpD, {
         x1: "start",
         x2: "end",
-        y: "jobTitle",
+        y: "sector",
         sort: { y: "-x1" },
         fill: "at",
         rx: 4,
       }),
       Plot.text(jobExpD, {
         x: "start",
-        y: "jobTitle",
+        y: "sector",
         text: "jobTitle",
         textAnchor: "end",
         dx: -3,
@@ -308,7 +308,7 @@ const jobsPlot = (width) =>
         Plot.pointer({
           x1: "start",
           x2: "end",
-          y: "jobTitle",
+          y: "sector",
           sort: { y: "-x1" },
           title: (d) => `${d.at}\n\n${d.shortDescription}`,
           fontSize: 14,
